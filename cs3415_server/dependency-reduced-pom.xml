@@ -18,9 +18,13 @@
           </execution>
         </executions>
         <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
           <artifactSet>
             <includes>
               <include>org.java-websocket:Java-WebSocket</include>
+              <include>com.google.code.gson:gson</include>
+              <include>org.nanohttpd:nanohttpd</include>
             </includes>
           </artifactSet>
           <transformers>
