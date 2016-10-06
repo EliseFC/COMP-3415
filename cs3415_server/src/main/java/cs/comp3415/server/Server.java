@@ -1,6 +1,8 @@
 package cs.comp3415.server;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -9,9 +11,12 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import org.java_websocket.WebSocket;
 import org.java_websocket.WebSocketImpl;
@@ -20,10 +25,12 @@ import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpServer;
 
 import fi.iki.elonen.NanoHTTPD;
+import javafx.geometry.Point3D;
 
 public class Server /*extends WebSocketServer*/ extends NanoHTTPD {
 
@@ -35,7 +42,40 @@ public class Server /*extends WebSocketServer*/ extends NanoHTTPD {
 	
 	@Override
 	public Response serve(IHTTPSession session) {
-		return newFixedLengthResponse(new Gson().toJson(session.getParameters()));
+		try {
+			session.parseBody(new HashMap<String, String>());
+		} catch (IOException | ResponseException e) {
+			e.printStackTrace();
+		}
+		/*JsonReader reader = null;
+		double y = 0;
+		try {
+			reader = new Gson().newJsonReader(new FileReader(new File("test.json")));
+			
+			reader.beginObject();
+			while(reader.hasNext()) {
+				if(reader.nextName().equals("y")) {
+					y = reader.nextDouble();
+				} else {
+					reader.skipValue();
+				}
+			}
+			reader.endObject();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		Response r = null;
+		if(y == 1)
+			r = newFixedLengthResponse(new Gson().toJson("yea"));
+		else
+			r = newFixedLengthResponse(new Gson().toJson("nah"));*/
+		
+		Response r = newFixedLengthResponse(new Gson().toJson(session.getParameters()));
+		r.addHeader("Access-Control-Allow-Origin", "*");
+		r.addHeader("Content-Type", "application/json");
+		return r;
 	}
 	
 	public static void main(String args[]) throws IOException {
