@@ -5,19 +5,6 @@
 	</head>
 	<body>
 		<script>
-			/*var idk = getFromDB(document.getElementById('name').value, function(responseJson) {
-				if(!responseJson.success)
-					// there was an error
-					document.write("Error!<br />Error msg: " + responseJson.error_message + "<br />");
-				else
-					// success
-					document.write("Success!<br />"
-					+ "<br />name: " + responseJson.name
-					+ "<br />userId: " + responseJson.userId
-					+ "<br />password: " + responseJson.password
-					+ "<br />userType: " + responseJson.userType + "<br />");
-			});*/
-			
 			function search() {
 				var name = document.getElementById('name').value;
 				getFromDB(name, function(responseJson) {
