@@ -1,0 +1,42 @@
+div.main{
+background-color: #dcefff;
+width: 320px;
+margin-top: 80px;
+padding: 10px 55px 40px;
+border: 15px #00427a;
+box-shadow: 0 0 25px;
+border-radius: 2px;
+font-size: 13px;
+margin: auto;
+}
+input[type=text],[type=password] {
+width: 97.7%;
+height: 34px;
+padding-left: 5px;
+margin-bottom: 20px;
+margin-top: 8px;
+color: #4f4f4f;
+font-size: 16px;
+}
+label{
+color: black;
+font-size: 14px;
+font-weight: bold;
+}
+#login {
+	width: 100%;
+	background: #00427a;
+	border: 1px solid white;
+	font-size: 20px;
+	margin-top: 15px;
+	padding: 8px;
+	font-weight: bold;
+	cursor: pointer;
+	color: white;
+	transition: .2s;
+}
+#login:hover{
+background: white;
+color: black;
+transition: .2s;
+}

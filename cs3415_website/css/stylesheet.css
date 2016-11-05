@@ -14,13 +14,30 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+	transition:.2s;
+	font-weight: bold;
+}
+#nav_bar li a:hover {
+    background-color: #FFF;
+	color: #000;
+}
+#btn a{
+	padding: 4;
+	text-decoration: none;
+	background-color: #00427a;
+	color: #FFF;
+	transition:.2s;
+}
+#btn a:hover{
+	padding: 4;
+	text-decoration: none;
+	background-color: #FFF;
+	color: #000;
 }
 
-/* Change the link color to #111 (black) on hover */
-#nav_bar li a:hover {
-    background-color: #111;
-}
+ 
 body{
+	margin: 0;
 	font-family: Sans-serif;
 }
 h3{
@@ -31,3 +48,4 @@ h3{
     display: block;
     margin: 0 auto;
 }
+
