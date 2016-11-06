@@ -21,14 +21,15 @@
     background-color: #FFF;
 	color: #000;
 }
-#btn a{
+
+.btn a{
 	padding: 4;
 	text-decoration: none;
 	background-color: #00427a;
 	color: #FFF;
 	transition:.2s;
 }
-#btn a:hover{
+.btn a:hover{
 	padding: 4;
 	text-decoration: none;
 	background-color: #FFF;
@@ -49,3 +50,6 @@ h3{
     margin: 0 auto;
 }
 
+.isSel{
+	background-color: red;
+}

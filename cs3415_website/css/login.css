@@ -23,7 +23,7 @@ color: black;
 font-size: 14px;
 font-weight: bold;
 }
-#login {
+.loginbutton{
 	width: 100%;
 	background: #00427a;
 	border: 1px solid white;
@@ -35,7 +35,7 @@ font-weight: bold;
 	color: white;
 	transition: .2s;
 }
-#login:hover{
+.loginbutton:hover{
 background: white;
 color: black;
 transition: .2s;
