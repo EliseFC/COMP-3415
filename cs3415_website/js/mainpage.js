@@ -16,7 +16,7 @@
 	$("#housereqs").selectable({
 		selected: function(event, ui) { 
 			$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected"); 
-			sSelected = $(ui.selected).text();			
+			hSelected = $(ui.selected).text();			
 			$("#viewHousereq").button({disabled: false});
 		}                   
 	});
@@ -42,6 +42,24 @@
         show: 'fold'
 	});
 	
+	$("#dialog-housereq" ).dialog({
+		autoOpen: false,
+		resizable: true,
+		height: "auto",
+		width: 600,
+		modal: true,
+		buttons: {
+			"Comfirm": function() {
+				$( this ).dialog( "close" );
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			}
+		},
+		hide: 'fold',
+        show: 'fold'
+	});
+	
 	//view resident request
 	$("#viewResreq").click(function(event){
 		$("#dialog-resreq").dialog("open");
@@ -53,5 +71,7 @@
 	
 	//testing view housing request
 	$("#viewHousereq").click(function(event){
-		alert("Selected: " + sSelected);
+		$("#dialog-housereq").dialog("open");
+		//GET ACTUAL DETAILS...
+		$("#HouseDetailsText").html("Selected: " +hSelected);
 	});
