@@ -1,12 +1,26 @@
 <div id="dialog-addBldg" title="Add Building">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Add stuff here</p>
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Make a form</p>
 </div>
 
 <div id="dialog-remBldg" title="Remove Building">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="remBldgDetails">Details here</div></p>
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="remBldgDetails"></div></p>
+</div>
+
+<div id="dialog-viewRoom" title="View Room">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="roomDetails">Details here</div></p>
+</div>
+
+<div id="dialog-addRoom" title="Add Room">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="addRoomDetails">Make a room form</div></p>
+</div>
+
+<div id="dialog-remRoom" title="Remove Room">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="remRoomDetails"></div></p>
 </div>
 
 <h3>Building Management</h3>
+
+<!--buildings panel-->
 <div class = "main panel-left">
 	<h3>Buildings</h3>
 	<div style="height:65%;width:100%;overflow-y:scroll">
@@ -18,17 +32,32 @@
 	</div>
 	<button id="newBldg" class="ui-button ui-widget ui-corner-all">Add</button>
 	<button id="remBldg" class="ui-button ui-widget ui-corner-all">Remove Selected</button>
+	<button id="viewFac" class="ui-button ui-widget ui-corner-all">View Facilities</button>
 </div>
+
+<!--rooms panel-->
 <div class = "main panel-right">
-	<h3>Rooms</h3>
+	<div id = "roomPanel">
+	<h3><div id="roomTitle">Rooms</div></h3>
 	<div style="height:65%;width:100%;overflow-y:scroll">
 		<ol class="selectlist"  id="rooms">
-			<li class="style=ui-widget-content">Some</li>
-			<li class="style=ui-widget-content">Placeholder</li>
-			<li class="style=ui-widget-content">Stuff</li>
+		<!--Starts empty, generated later-->
 		</ol>
 	</div>
 	<button id="viewRoom" class="ui-button ui-widget ui-corner-all">View Room Details</button>
 	<button id="addRoom" class="ui-button ui-widget ui-corner-all">Add</button>
 	<button id="remRoom" class="ui-button ui-widget ui-corner-all">Remove</button>
+	</div>
+	<div id = "facPanel">
+	<h3><div id="roomTitle">Facilities</div></h3>
+	<div style="height:65%;width:100%;overflow-y:scroll;z-index: 10">
+		<ol class="selectlist"  id="facilitesList">
+		<!--Starts empty, generated later-->
+		</ol>
+	</div>
+	<button id="addFac" class="ui-button ui-widget ui-corner-all">Add</button>
+	<button id="remFac" class="ui-button ui-widget ui-corner-all">Remove</button>
+	<button id="closeFac" class="ui-button ui-widget ui-corner-all">Close</button>
+	</div>
 </div>
+

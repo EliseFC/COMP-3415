@@ -33,6 +33,7 @@ $( document ).ready(function(){
 		$("#userTab").addClass("isSel");
 		//load user page content, run queries for resident/housing requests
 		$("#main-content").fadeOut('fast');
-		//load the page whenever i make it
+		$("#main-content").load("usermanage.html").hide().fadeIn('fast');
+		$.getScript("./js/usermanage.js");
 	});
 });
