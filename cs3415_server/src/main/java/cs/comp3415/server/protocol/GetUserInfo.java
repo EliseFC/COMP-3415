@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class GetUserInfo extends Packet {
 
-	private boolean success = true;
 	private int userId;
 	private String password;
 	private String userType;
@@ -35,7 +34,7 @@ public class GetUserInfo extends Packet {
 		
 		rs.next();
 		fill(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-		conn.close();
+		ps.close();
 		rs.close();
 	}
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 
 public abstract class Packet {
 
+	private boolean success = true;
 	private int id;
 	
 	public abstract void process(Connection conn, Map<String, List<String>> parameters) throws Exception;

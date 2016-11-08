@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class GetBuildings extends Packet {
 
-	private boolean success = true;
 	private List<Building> buildings;
 	
 	public GetBuildings() {
@@ -21,7 +20,6 @@ public class GetBuildings extends Packet {
 		// try the query
 		ResultSet rs = conn.prepareStatement("SELECT buildingID, name, type FROM buildings").executeQuery();
 		fill(rs);
-		conn.close();
 		rs.close();
 	}
 	

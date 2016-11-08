@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
@@ -40,12 +42,19 @@ public class Server extends NanoHTTPD {
 		if(packet == null)
 			return sendErrorPacket("No packet with id " + session.getParameters().get("id") + " found!");
 		
+		Connection conn = db.getConnection();
 		try {
 			System.out.println("Processing a packet with ID " + packet.getId());
-			packet.process(db.getConnection(), session.getParameters());
+			packet.process(conn, session.getParameters());
 		} catch(Exception e) {
 			//e.printStackTrace();
 			return sendErrorPacket(e.getMessage());
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		Response r = newFixedLengthResponse(new Gson().toJson(packet));

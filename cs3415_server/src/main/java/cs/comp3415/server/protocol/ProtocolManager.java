@@ -11,6 +11,13 @@ public class ProtocolManager {
 	public ProtocolManager() {
 		packets.put(0, GetUserInfo::new);
 		packets.put(1, GetBuildings::new);
+		packets.put(2, NewBuilding::new);
+		packets.put(3, RemoveBuilding::new);
+		packets.put(4, GetRooms::new);
+		packets.put(5, NewRoom::new);
+		packets.put(6, RemoveRoom::new);
+		packets.put(7, GetOccupants::new);
+		packets.put(8, GetIssues::new);
 	}
 	
 	public Packet getPacketFromID(int id) {
