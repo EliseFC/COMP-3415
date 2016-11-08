@@ -1,5 +1,5 @@
 //our variables for what is selected
-var bSelected, rSelected;
+var bSelected, rSelected, fSelected;
 //hide the facilities panel for now
 $("#facPanel").hide();
 //disable the buttons before anything is selected
@@ -7,14 +7,34 @@ $("#remBldg").button({disabled: true});
 $("#viewRoom").button({disabled: true});
 $("#addRoom").button({disabled: true});
 $("#remRoom").button({disabled: true});
+$("#addFac").button({disabled: true});
+$("#remFac").button({disabled: true});
+
+//hide view rooms button
+$("#switchRoom").hide();
+
+//building list generation
+function updateBuildings(){
+	$("#buildings").empty();
+	for(i=0;i<5;i++){
+	$("#buildings").append('<li class="style=ui-widget-content" id="buildingID' + i + '"> Something '+i+'</li>');
+	}
+}
+
+updateBuildings();
 
 //select functions
 $("#buildings").selectable({
 	selected: function(event, ui) {
+		//disable buttons that require room/facility selection
+		$("#remRoom").button({disabled: true});
+		$("#remFac").button({disabled: true});
+		$("#viewRoom").button({disabled: true});
 		$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");  
 		bSelected = $(ui.selected).text();
 		$("#remBldg").button({disabled: false});
 		$("#addRoom").button({disabled: false});
+		$("#addFac").button({disabled: false});
 		//update room title
 		$("#roomTitle").fadeOut('fast',function(){
 			$("#roomTitle").html("Rooms in " + bSelected);
@@ -28,8 +48,12 @@ $("#buildings").selectable({
 			}
 			$("#rooms").slideDown('fast');
 		});
-		
-	}                   
+		//generate facilities list (query query blahblah)
+		$("#facilitesList").empty();
+		for(i=0;i<5;i++){
+			$("#facilitesList").append('<li class="style=ui-widget-content" id="facID"' + i + '">'+bSelected+' Something '+i+'</li>');
+		}
+	}
 });
 $("#rooms").selectable({
 	selected: function(event, ui) { 
@@ -93,28 +117,27 @@ $("#dialog-remBldg" ).dialog({
 $("#facilitesList").selectable({
 	selected: function(event, ui) { 
 		$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected"); 
-		rSelected = $(ui.selected).text();			
+		fSelected = $(ui.selected).text();			
 		$("#remFac").button({disabled: false});
 	}                   
 });
 
 //view facilites button
 $("#viewFac").click(function(event){
-	$("#facilitesList").empty();
-	for(i=0;i<5;i++){
-		$("#facilitesList").append('<li class="style=ui-widget-content" id="facID"' + i + '">'+bSelected+' Something '+i+'</li>');
-	}
+	$("#viewFac").hide();
+	$("#switchRoom").show();
 	$("#roomPanel").fadeOut('fast',function(){
 		$("#facPanel").fadeIn('fast');
 	});
 });
-
-$("#closeFac").click(function(event){
+//view rooms button
+$("#switchRoom").click(function(event){
+	$("#switchRoom").hide();
+	$("#viewFac").show();
 	$("#facPanel").fadeOut('fast',function(){
 		$("#roomPanel").fadeIn('fast');
 	});
 });
-
 
 //dialog view room
 $("#dialog-viewRoom" ).dialog({
@@ -189,4 +212,54 @@ $("#dialog-remRoom" ).dialog({
 $("#remRoom").click(function(event){
 	$("#remRoomDetails").html("Removing: " + rSelected);
 	$("#dialog-remRoom").dialog("open");
+});
+
+//dialog addfac
+$("#dialog-addFac" ).dialog({
+	autoOpen: false,
+	resizable: false,
+	height: "auto",
+	width: 300,
+	modal: true,
+	buttons: {
+		"OK": function() {
+			$( this ).dialog( "close" );
+		},
+		Cancel: function() {
+			$( this ).dialog( "close" );
+		}
+	},
+	hide: 'fold',
+	show: 'fold'
+});
+
+//add facility button
+$("#addFac").click(function(event){
+	$("#addFacDetails").html("Adding facility to " + bSelected);
+	$("#dialog-addFac").dialog("open");
+});
+
+//dialog remove fac
+$("#dialog-remFac" ).dialog({
+	autoOpen: false,
+	resizable: false,
+	height: "auto",
+	width: 300,
+	modal: true,
+	buttons: {
+		"OK": function() {
+			$( this ).dialog( "close" );
+		},
+		Cancel: function() {
+			$( this ).dialog( "close" );
+		}
+	},
+	hide: 'fold',
+	show: 'fold'
+});
+
+//remove fac button
+$("#remFac").click(function(event){
+	$("#remFacDetails").html("Removing: " + fSelected);
+	$("#dialog-remFac").dialog("open");
 });

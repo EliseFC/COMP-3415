@@ -1,40 +1,67 @@
 //our variables for what is selected
-	var rSelected, hSelected;
+	var uSelected;
 	
-	//disable the "view" buttons before anything is selected
-	$("#viewResreq").button({disabled: true});
-	$("#viewHousereq").button({disabled: true});
+	//disable the edit details and remove buttons before anything is selected
+	$("#editDetails").button({disabled: true});
+	$("#remUser").button({disabled: true});
 	
 	//select functions
-	$("#resreqs").selectable({
+	$("#userlist").selectable({
 		selected: function(event, ui) {
 			$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");  
-			rSelected = $(ui.selected).text();
-			$("#viewResreq").button({disabled: false});
-		}                   
-	});
-	$("#housereqs").selectable({
-		selected: function(event, ui) { 
-			$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected"); 
-			hSelected = $(ui.selected).text();			
-			$("#viewHousereq").button({disabled: false});
+			uSelected = $(ui.selected).text();
+			$("#editDetails").button({disabled: false});
+			$("#remUser").button({disabled: false});
+			//update user details form
+			$("#userDetails").html('Selected: '+uSelected);
 		}                   
 	});
 	
-	//Dialog to display the details of selected resident request
-	$("#dialog-resreq" ).dialog({
+	//make some junk for the users for now
+	//THIS WILL COME FROM DATABSE AFTER
+	function updateUsers(){
+		$("#userlist").empty();
+		for(i=0;i<5;i++){
+			$("#userlist").append('<li class="style=ui-widget-content" id="userID' + i + '"> Something '+i+'</li>');
+		}
+	}
+	
+	//update the users(we will call this whenever we change anything)
+	updateUsers();
+	
+	
+	//Dialog to manually create user (e.g. manager)
+	$("#dialog-createuser" ).dialog({
 		autoOpen: false,
 		resizable: true,
 		height: "auto",
 		width: 600,
 		modal: true,
 		buttons: {
-			"Complete/Remove": function() {
-				//DELETE ENTRY IN DATABASE
-				$("#viewResreq").button({disabled: true});
+			"OK": function() {
+				//Update user details pane, database entry,etc.
 				$( this ).dialog( "close" );
 			},
-			"Close": function() {
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			}
+		},
+		hide: 'fold',
+        show: 'fold'
+	});
+	//Dialog to edit the selected user details
+	$("#dialog-edituser" ).dialog({
+		autoOpen: false,
+		resizable: true,
+		height: "auto",
+		width: 600,
+		modal: true,
+		buttons: {
+			"OK": function() {
+				//Update user details pane, database entry,etc.
+				$( this ).dialog( "close" );
+			},
+			Cancel: function() {
 				$( this ).dialog( "close" );
 			}
 		},
@@ -42,7 +69,7 @@
         show: 'fold'
 	});
 	
-	$("#dialog-housereq" ).dialog({
+	$("#dialog-remuser" ).dialog({
 		autoOpen: false,
 		resizable: true,
 		height: "auto",
@@ -61,17 +88,28 @@
 	});
 	
 	//view resident request
-	$("#viewResreq").click(function(event){
-		$("#dialog-resreq").dialog("open");
+	$("#newUser").click(function(event){
+		$("#dialog-createuser").dialog("open");
 		
-		//GET ACTUAL REQUEST DETAILS
-		$("#DetailsText").html("Selected: " +rSelected);
+		//balh?
 	});
 	
 	
-	//testing view housing request
-	$("#viewHousereq").click(function(event){
-		$("#dialog-housereq").dialog("open");
-		//GET ACTUAL DETAILS...
-		$("#HouseDetailsText").html("Selected: " +hSelected);
+	//edit selected user details
+	$("#editDetails").click(function(event){
+		$("#dialog-edituser").dialog("open");
+		//populate form with user details
+	});
+	
+	//remove selected user
+	$("#remUser").click(function(event){
+		$("#dialog-remuser").dialog("open");
+		$("#remUserContents").html('Removing: ' + uSelected);
+	});
+	
+	$("#userSearch").keypress(function(e) {
+    if(e.which == 13) {
+        alert('Search using: ' + $(this).val());
+		$(this).val('');
+    }
 	});

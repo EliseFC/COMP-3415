@@ -36,4 +36,12 @@ $( document ).ready(function(){
 		$("#main-content").load("usermanage.html").hide().fadeIn('fast');
 		$.getScript("./js/usermanage.js");
 	});
+	$("#logTab").click(function(){
+		$("#main-content").fadeOut('fast',function(){
+			sessionStorage.removeItem("managerSession");
+			window.location.href = 'index.html';
+		});
+		
+	});
+	
 });
