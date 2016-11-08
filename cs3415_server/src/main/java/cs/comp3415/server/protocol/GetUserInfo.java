@@ -36,6 +36,7 @@ public class GetUserInfo extends Packet {
 		rs.next();
 		fill(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
 		conn.close();
+		rs.close();
 	}
 	
 	private void fill(int id, String password, String userType, String name) {

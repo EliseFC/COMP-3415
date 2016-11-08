@@ -2,6 +2,10 @@ var getFromDB = function(usernameToGet, callback) {
 	getJSONResponse("?id=0&username=" + usernameToGet, callback);
 }
 
+var getBuildings = function(callback) {
+	getJSONRequest("?id=1", callback);
+}
+
 var getJSONResponse = function(params, callback) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {

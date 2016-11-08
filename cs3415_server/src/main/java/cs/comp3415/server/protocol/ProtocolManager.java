@@ -10,6 +10,7 @@ public class ProtocolManager {
 	
 	public ProtocolManager() {
 		packets.put(0, GetUserInfo::new);
+		packets.put(1, GetBuildings::new);
 	}
 	
 	public Packet getPacketFromID(int id) {
