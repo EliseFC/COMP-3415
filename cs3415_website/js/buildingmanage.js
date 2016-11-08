@@ -157,10 +157,34 @@ $("#dialog-viewRoom" ).dialog({
 	hide: 'fold',
 	show: 'fold'
 });
+//dialog edit room equipment
+$("#dialog-editEquip" ).dialog({
+	autoOpen: false,
+	resizable: false,
+	height: "auto",
+	width: 300,
+	modal: true,
+	buttons: {
+		"OK": function() {
+			$( this ).dialog( "close" );
+		},
+		Cancel: function() {
+			$( this ).dialog( "close" );
+		}
+	},
+	hide: 'fold',
+	show: 'fold'
+});
+
+//edit equipment button
+$("#editEquip").click(function(event){
+	$("#dialog-editEquip").dialog("open");
+});
+
 
 //view room button
 $("#viewRoom").click(function(event){
-	$("#roomDetails").html("Viewing Details: " + rSelected);
+	$("#roomDetails").html('Viewing Details: ' + rSelected);
 	$("#dialog-viewRoom").dialog("open");
 });
 
