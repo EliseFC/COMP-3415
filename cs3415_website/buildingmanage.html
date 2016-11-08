@@ -1,8 +1,10 @@
 <div id="dialog-addBldg" title="Add Building">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+		<label>Name:</label>
 		<input type="text" name="buildingName" id="buildingName"></p>
+		<label>Type:</label>
 		<input type="text" name="buildingType" id="buildingType"></p>
-		<input type="text" name="buildingFacilities" id="buildingFacilities"></p>
+		<label>Facilities:</label>
+		<input type="text" name="buildingFacilities" id="buildingFacilities">
 </div>
 
 <div id="dialog-remBldg" title="Remove Building">
@@ -10,27 +12,33 @@
 </div>
 
 <div id="dialog-viewRoom" title="View Room">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="roomDetails">Details here</div><button id="editEquip" class="ui-button ui-widget ui-corner-all">Edit Equipment</button></p>
+	<div id="roomDetails">Details here</div>
+	<button id="editEquip" class="ui-button ui-widget ui-corner-all">Edit Equipment</button>
 </div>
 
 <div id="dialog-editEquip" title="Edit Room Equipment">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="equipDetails"></div></p>
+	<label>Editing Equipment:</label>
+	<input type="text" name="inputEquip" id="inputEquip">
 </div>
 
 <div id="dialog-addRoom" title="Add Room">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="addRoomDetails">Make a room form</div></p>
+	<label>Room Number:</label>
+	<input type="text" name="newRoomName" id="newRoomName"></p>
+	<label>Devices:</label>
+	<input type="text" name="newRoomDevices" id="newRoomDevices">
 </div>
 
 <div id="dialog-remRoom" title="Remove Room">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="remRoomDetails"></div></p>
+	<div id="remRoomDetails"></div></p>
 </div>
 
 <div id="dialog-addFac" title="Add Facility">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="addFacDetails">Make a Facility form</div></p>
+	<label>New Facility:</label>
+	<input type="text" name="newFacility" id="newFacility">
 </div>
 
 <div id="dialog-remFac" title="Remove Facility">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="remFacDetails"></div></p>
+	<div id="remFacDetails"></div>
 </div>
 
 <h3>Building Management</h3>
