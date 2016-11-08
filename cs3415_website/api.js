@@ -3,7 +3,7 @@ var getFromDB = function(usernameToGet, callback) {
 }
 
 var getBuildings = function(callback) {
-	getJSONRequest("?id=1", callback);
+	getJSONResponse("?id=1", callback);
 }
 
 var getJSONResponse = function(params, callback) {

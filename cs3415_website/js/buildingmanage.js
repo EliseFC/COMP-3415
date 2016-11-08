@@ -1,5 +1,7 @@
 //our variables for what is selected
 var bSelected, rSelected, fSelected;
+
+var buildings;
 //hide the facilities panel for now
 $("#facPanel").hide();
 //disable the buttons before anything is selected
@@ -16,9 +18,19 @@ $("#switchRoom").hide();
 //building list generation
 function updateBuildings(){
 	$("#buildings").empty();
-	for(i=0;i<5;i++){
-	$("#buildings").append('<li class="style=ui-widget-content" id="buildingID' + i + '"> Something '+i+'</li>');
-	}
+	//for(i=0;i<5;i++){
+	//$("#buildings").append('<li class="style=ui-widget-content" id="buildingID' + i + '"> Something '+i+'</li>');
+	//}
+	getBuildings(function(response){
+		if(!response.success){
+			alert("nope");
+		}else{
+			buildings = response.buildings;
+			buildings.forEach(function(entry){
+				$("#buildings").append('<li class="style=ui-widget-content">'+entry.name+'</li>');
+			});
+		}
+	});
 }
 
 updateBuildings();
