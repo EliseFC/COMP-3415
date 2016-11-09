@@ -15,7 +15,7 @@ var removeBuilding = function(id, callback) {
 }
 
 var getRooms = function(buildingID, callback) {
-	api("?id=4&buildingID=" + id, callback);
+	api("?id=4&buildingID=" + buildingID, callback);
 }
 
 var addRoom = function(roomNo, buildingID, devices, callback) {

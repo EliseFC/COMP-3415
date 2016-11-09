@@ -1,7 +1,7 @@
 //our variables for what is selected
 var bSelected, rSelected, fSelected;
 
-var buildings;
+var buildings,rooms;
 //hide the facilities panel for now
 $("#facPanel").hide();
 //disable the buttons before anything is selected
@@ -25,7 +25,7 @@ function updateBuildings(){
 		}else{
 			buildings = response.buildings;
 			buildings.forEach(function(entry){
-				$("#buildings").append('<li class="style=ui-widget-content">'+entry.name+'</li>');
+				$("#buildings").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.name+'</li>');
 			});
 			console.log("**Sucessfully fetched buildings!**");
 		}
@@ -33,6 +33,20 @@ function updateBuildings(){
 }
 
 updateBuildings();
+
+function updateRooms(){
+	getRooms($('#buildings .ui-selected').attr('id'),function(response){
+		if(!response.success){
+			console.log("error fetching rooms");
+		}else{
+			rooms = response.rooms;
+			rooms.forEach(function(entry){
+				$("#rooms").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.number+'</li>');
+			});
+			console.log("**Sucessfully fetched rooms!**");
+		}
+	});
+}
 
 //select functions
 $("#buildings").selectable({
@@ -54,9 +68,10 @@ $("#buildings").selectable({
 		//generate room list (will be api query later)
 		$("#rooms").slideUp('fast',function(){
 			$("#rooms").empty();
-			for(i=0;i<5;i++){
-				$("#rooms").append('<li class="style=ui-widget-content" id="roomID' + i + '">'+bSelected+' Something '+i+'</li>');
-			}
+			//for(i=0;i<5;i++){
+			//	$("#rooms").append('<li class="style=ui-widget-content" id="roomID' + i + '">'+bSelected+' Something '+i+'</li>');
+			//}
+			updateRooms();
 			$("#rooms").slideDown('fast');
 		});
 		//generate facilities list (query query blahblah)
@@ -89,6 +104,16 @@ $("#dialog-addBldg" ).dialog({
 	modal: true,
 	buttons: {
 		"OK": function() {
+			//function(name, type, facilities, callback
+			addBuilding($("#buildingName").val(),$("#buildingType").val(),$("#buildingFacilities").val(),function(response){
+				if(!response.success){
+					console.log("error doing database stuff");
+					alert("whoops!");
+				}else{
+					console.log("**Sucessfully saved new building!**");
+				}
+			});
+			updateBuildings();
 			$( this ).dialog( "close" );
 		},
 		Cancel: function() {
@@ -114,6 +139,17 @@ $("#dialog-remBldg" ).dialog({
 	modal: true,
 	buttons: {
 		"OK": function() {
+			removeBuilding($('#buildings .ui-selected').attr('id'),function(response){
+				if(!response.success){
+					console.log("error doing database stuff");
+					alert("whoops!");
+				}else{
+					console.log("**Sucessfully removed!**");
+				}
+			});
+			updateBuildings();
+			alert($("#buildings").prop("selectedIndex"));
+			
 			$( this ).dialog( "close" );
 		},
 		Cancel: function() {
@@ -208,6 +244,16 @@ $("#dialog-addRoom" ).dialog({
 	modal: true,
 	buttons: {
 		"OK": function() {
+			//function(roomNo, buildingID, devices, callback)
+			addRoom($("#newRoomName").val(),$('#buildings .ui-selected').attr('id'),$("#newRoomDevices").val(),function(response){
+				if(!response.success){
+					console.log("error adding room");
+					alert("whoops!");
+				}else{
+					console.log("**Sucessfully saved new room!**");
+				}
+			});
+			updateRooms();
 			$( this ).dialog( "close" );
 		},
 		Cancel: function() {
