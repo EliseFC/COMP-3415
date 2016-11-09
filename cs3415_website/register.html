@@ -1,6 +1,7 @@
+<!-- rejester PAGE-->
 <html>
 <head>
-<title>Residence Manager - Student Login</title>
+<title>Register</title>
 <link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="css/login.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -10,19 +11,18 @@
 <div id='nav_bar'>
 	<ul>
 	  <li><a href="index.html">Home</a></li>
-	  <li><a href="register.html">Register</a></li>
 	</ul>
 </div>
-<h3>Student Login</h3>
+<h3>Register</h3>
 <div class="main">
 	<form class="form" method="post" action="#">
-		<input type="radio" name="roleType" value="student" checked> Student<br>
-		<input type="radio" name="roleType" value="manager"> Manager<br>
-		<label>Username</label>
+		<label>Username:</label>
 		<input type="text" name="username" id="username">
-		<label>Password</label>
-		<input type="password" name="password" id="password">
-		<input class="loginbutton" type="button" name="slogin" id="slogin" value="Login">
+		<label>Pass Word:</label>
+		<input type="password" name="pwd" id="pwd" >
+		<label>Confirm Pass Word:</label>
+		<input type="password" name="pwd2" id="pwd2" >
+		
 		
 	</form>
 </div>
