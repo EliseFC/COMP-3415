@@ -31,7 +31,7 @@ var getOccupants = function(roomID, callback) {
 }
 
 var getIssues = function(buildingID, callback) {
-	api("?id=8&buildingID=" + id, callback);
+	api("?id=8&buildingID=" + buildingID, callback);
 }
 
 var api = function(params, callback) {

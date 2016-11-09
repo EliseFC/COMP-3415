@@ -90,13 +90,13 @@ public class SQL {
 	}
 	
 	public void checkForAny(String errorMsg) throws SQLException {
-		if(!rs.isBeforeFirst())
+		if(rs.isBeforeFirst())
 			throw new RuntimeException(errorMsg);
 		close();
 	}
 	
 	public void checkForNone(String errorMsg) throws SQLException {
-		if(rs.isBeforeFirst())
+		if(!rs.isBeforeFirst())
 			throw new RuntimeException(errorMsg);
 		close();
 	}

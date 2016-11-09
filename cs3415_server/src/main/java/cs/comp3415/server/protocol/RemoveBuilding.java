@@ -17,7 +17,7 @@ public class RemoveBuilding extends Packet {
 		// verify parameters
 		int buildingId = vInt("buildingID", parameters);
 		
-		SQL.query("SELECT * FROM buildings WHERE buildingID = ?", conn).closeConnection(false).setInt(1, buildingId).executeQuery().checkForAny("Building does not exist.");
+		SQL.query("SELECT * FROM buildings WHERE buildingID = ?", conn).closeConnection(false).setInt(1, buildingId).executeQuery().checkForNone("Building does not exist.");
 		SQL.query("DELETE FROM buildings WHERE buildingID = ?", conn).setInt(1, buildingId).execute();
 	}
 }

@@ -17,7 +17,7 @@ public class RemoveRoom extends Packet {
 		// verify parameters
 		int roomId = vInt("roomID", parameters);
 		
-		SQL.query("SELECT * FROM rooms WHERE room_id = ?", conn).closeConnection(false).setInt(1, roomId).executeQuery().checkForAny("Room does not exist.");
+		SQL.query("SELECT * FROM rooms WHERE room_id = ?", conn).closeConnection(false).setInt(1, roomId).executeQuery().checkForNone("Room does not exist.");
 		SQL.query("DELETE FROM rooms WHERE room_id = ?", conn).setInt(1, roomId).execute();
 	}
 }
