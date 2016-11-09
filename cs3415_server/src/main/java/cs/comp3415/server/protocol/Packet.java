@@ -36,4 +36,12 @@ public abstract class Packet {
 		
 		return parameter;
 	}
+	
+	protected String vString(String key, Map<String, List<String>> parameters) {
+		return verifyParameter(key, parameters);
+	}
+	
+	protected int vInt(String key, Map<String, List<String>> parameters) {
+		return Integer.parseInt(verifyParameter(key, parameters));
+	}
 }

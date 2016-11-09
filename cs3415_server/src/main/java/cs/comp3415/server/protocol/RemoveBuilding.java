@@ -1,10 +1,10 @@
 package cs.comp3415.server.protocol;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
+
+import cs.comp3415.server.util.SQL;
 
 public class RemoveBuilding extends Packet {
 
@@ -15,23 +15,9 @@ public class RemoveBuilding extends Packet {
 	@Override
 	public void process(Connection conn, Map<String, List<String>> parameters) throws Exception {
 		// verify parameters
-		int buildingId = Integer.parseInt(verifyParameter("buildingID", parameters));
+		int buildingId = vInt("buildingID", parameters);
 		
-		// see if there is a building existing
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM buildings WHERE buildingID = ?");
-		ps.setInt(1, buildingId);
-		ResultSet rs = ps.executeQuery();
-		
-		// verify that the query got no result
-		if(!rs.isBeforeFirst())
-			throw new RuntimeException("Building does not exist " + buildingId);
-		
-		rs.close();
-		ps.close();
-		ps = conn.prepareStatement("DELETE FROM buildings WHERE buildingID = ?");
-		ps.setInt(1, buildingId);
-		ps.execute();
-		ps.close();
-		rs.close();
+		SQL.query("SELECT * FROM buildings WHERE buildingID = ?", conn).closeConnection(false).setInt(1, buildingId).executeQuery().checkForAny("Building does not exist.");
+		SQL.query("DELETE FROM buildings WHERE buildingID = ?", conn).setInt(1, buildingId).execute();
 	}
 }

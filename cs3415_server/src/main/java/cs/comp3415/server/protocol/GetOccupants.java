@@ -1,12 +1,10 @@
 package cs.comp3415.server.protocol;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import cs.comp3415.server.util.SQL;
 
 public class GetOccupants extends Packet {
 	
@@ -18,22 +16,8 @@ public class GetOccupants extends Packet {
 
 	@Override
 	public void process(Connection conn, Map<String, List<String>> parameters) throws Exception {
-		// verify parameter
-		int roomId = Integer.parseInt(verifyParameter("roomID", parameters));
-		
-		// get occupants
-		PreparedStatement ps = conn.prepareStatement("SELECT student, start_date, end_date FROM occupants WHERE room_id = ?");
-		ps.setInt(1, roomId);
-		ResultSet rs = ps.executeQuery();
-		fill(rs);
-		rs.close();
-		ps.close();
-	}
-	
-	private void fill(ResultSet rs) throws SQLException {
-		occupants = new LinkedList<>();
-		while(rs.next())
-			occupants.add(new Occupant(rs.getString(1), rs.getString(2), rs.getString(3)));
+		int roomId = vInt("roomID", parameters);
+		SQL.query("SELECT student, start_date, end_date FROM occupants WHERE room_id = ?", conn).setInt(1, roomId).executeQuery().fillList(Occupant.class, rs -> { return new Occupant(rs.getString(1), rs.getString(2), rs.getString(3)); });
 	}
 	
 	public static class Occupant {
