@@ -3,6 +3,7 @@ $( document ).ready(function(){
 	$("#main-content").load("mmaincontent.html").hide().fadeIn('fast');
 	$.getScript("./js/mainpage.js");
 	
+	
 	//TAB Functions for loading the different pages
 	$("#bldgTab").click(function(){
 		$(".navTab").each(function(){

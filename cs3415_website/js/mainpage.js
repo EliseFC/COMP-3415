@@ -1,6 +1,36 @@
 //our variables for what is selected
 	var rSelected, hSelected;
 	
+	var buildings, issues;
+	
+	//get the issues, first get the buildings, to get the issues
+	getBuildings(function(response){
+		if(!response.success){
+			console.log("error getting buildings"+response.error_message);
+		}else{
+			buildings = response.buildings;
+			buildings.forEach(function(entry){
+				getIssues(entry.id,function(response){
+					if(!response.success){
+						console.log("error getting issues"+response.error_message);
+					}else{
+						issues = response.issues;
+						if(issues){
+							issues.forEach(function(entry2){
+							$("#resreqs").append('<li class="style=ui-widget-content" id="'+issues.issue+'">'+'Building: '+entry.name+ ' ' +issues.issue+'</li>');
+							});	
+						}else{
+							$("#resreqs").append('<li class="style=ui-widget-content">No Issues</li>');
+						}
+					}
+				});
+			});
+		}
+		console.log("**Sucessfully fetched buildings!**");
+	});
+	
+	
+	
 	//disable the "view" buttons before anything is selected
 	$("#viewResreq").button({disabled: true});
 	$("#viewHousereq").button({disabled: true});
