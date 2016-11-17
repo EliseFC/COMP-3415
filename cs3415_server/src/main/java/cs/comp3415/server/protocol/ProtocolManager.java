@@ -18,6 +18,8 @@ public class ProtocolManager {
 		packets.put(6, RemoveRoom::new);
 		packets.put(7, GetOccupants::new);
 		packets.put(8, GetIssues::new);
+		packets.put(9, UpdateDevices::new);
+		packets.put(10, UpdateFacilities::new);
 	}
 	
 	public Packet getPacketFromID(int id) {

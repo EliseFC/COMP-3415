@@ -17,7 +17,7 @@ public class GetOccupants extends Packet {
 	@Override
 	public void process(Connection conn, Map<String, List<String>> parameters) throws Exception {
 		int roomId = vInt("roomID", parameters);
-		SQL.query("SELECT student, start_date, end_date FROM occupants WHERE room_id = ?", conn).setInt(1, roomId).executeQuery().fillList(Occupant.class, rs -> { return new Occupant(rs.getString(1), rs.getString(2), rs.getString(3)); });
+		occupants = SQL.query("SELECT student, start_date, end_date FROM occupants WHERE room_id = ?", conn).setInt(1, roomId).executeQuery().fillList(Occupant.class, rs -> { return new Occupant(rs.getString(1), rs.getString(2), rs.getString(3)); });
 	}
 	
 	public static class Occupant {
