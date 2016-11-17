@@ -21,6 +21,16 @@ public class ProtocolManager {
 		packets.put(9, UpdateDevices::new);
 		packets.put(10, UpdateFacilities::new);
 		packets.put(11, RemoveOccupant::new);
+		packets.put(12, NewIssue::new);
+		packets.put(13, SetIssueStatus::new);
+		packets.put(14, RemoveIssue::new);
+		packets.put(15, GetNotifications::new);
+		packets.put(16, NewNotification::new);
+		packets.put(17, RemoveNotification::new);
+		packets.put(18, NewHousingRequest::new);
+		packets.put(19, GetHousingRequests::new);
+		packets.put(20, ApproveRequest::new);
+		packets.put(21, DenyRequest::new);
 	}
 	
 	public Packet getPacketFromID(int id) {

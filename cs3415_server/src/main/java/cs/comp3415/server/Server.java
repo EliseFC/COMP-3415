@@ -47,7 +47,7 @@ public class Server extends NanoHTTPD {
 			System.out.println("Processing a packet with ID " + packet.getId());
 			packet.process(conn, session.getParameters());
 		} catch(Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return sendErrorPacket(e.getMessage());
 		} finally {
 			try {
