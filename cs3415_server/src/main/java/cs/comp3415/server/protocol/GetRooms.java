@@ -21,18 +21,20 @@ public class GetRooms extends Packet {
 		int building = vInt("buildingID", parameters);
 		
 		// try the query
-		rooms = SQL.query("SELECT room_id, roomNumber, devices FROM rooms WHERE bldng = ?", conn).setInt(1, building).executeQuery().fillList(Room.class, rs -> { return new Room(rs.getInt(1), rs.getString(2), rs.getString(3)); });
+		rooms = SQL.query("SELECT room_id, roomNumber, devices, capacity FROM rooms WHERE bldng = ?", conn).setInt(1, building).executeQuery().fillList(Room.class, rs -> { return new Room(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)); });
 	}
 	
 	public static class Room {
 		private int id;
 		private String number;
 		private String devices;
+		private int capacity;
 		
-		public Room(int id, String number, String devices) {
+		public Room(int id, String number, String devices, int capacity) {
 			this.id = id;
 			this.number = number;
 			this.devices = devices;
+			this.capacity = capacity;
 		}
 	}
 }

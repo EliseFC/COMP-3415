@@ -20,6 +20,7 @@ public class ProtocolManager {
 		packets.put(8, GetIssues::new);
 		packets.put(9, UpdateDevices::new);
 		packets.put(10, UpdateFacilities::new);
+		packets.put(11, RemoveOccupant::new);
 	}
 	
 	public Packet getPacketFromID(int id) {

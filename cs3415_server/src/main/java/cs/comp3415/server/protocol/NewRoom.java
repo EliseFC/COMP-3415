@@ -18,7 +18,8 @@ public class NewRoom extends Packet {
 		String roomNumber = verifyParameter("roomNumber", parameters);
 		int buildingID = vInt("buildingID", parameters);
 		String devices = verifyParameter("devices", parameters);
+		int capacity = vInt("capacity", parameters);
 		
-		SQL.query("INSERT INTO rooms (roomNumber, devices, bldng) VALUES (?, ?, ?)", conn).setString(1, roomNumber).setString(2, devices).setInt(3, buildingID).execute();
+		SQL.query("INSERT INTO rooms (roomNumber, devices, bldng, capacity) VALUES (?, ?, ?, ?)", conn).setString(1, roomNumber).setString(2, devices).setInt(3, buildingID).setInt(4, capacity).execute();
 	}
 }
