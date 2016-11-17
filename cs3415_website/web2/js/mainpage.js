@@ -20,7 +20,7 @@
 							$("#resreqs").append('<li class="style=ui-widget-content" id="'+issues.issue+'">'+'Building: '+entry.name+ ' ' +issues.issue+'</li>');
 							});	
 						}else{
-							$("#resreqs").append('<li class="style=ui-widget-content">No Issues for:'+entry.name+'</li>');
+							$("#resreqs").append('<li class="style=ui-widget-content">No Issues</li>');
 						}
 					}
 				});

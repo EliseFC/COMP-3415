@@ -1,0 +1,55 @@
+#nav_bar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #00427a;
+}
+#nav_bar li{
+	float: left;
+}
+#nav_bar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	transition:.2s;
+	font-weight: bold;
+}
+#nav_bar li a:hover {
+    background-color: #FFF;
+	color: #000;
+}
+
+.btn a{
+	padding: 4;
+	text-decoration: none;
+	background-color: #00427a;
+	color: #FFF;
+	transition:.2s;
+}
+.btn a:hover{
+	padding: 4;
+	text-decoration: none;
+	background-color: #FFF;
+	color: #000;
+}
+
+ 
+body{
+	margin: 0;
+	font-family: Sans-serif;
+}
+h3{
+	text-align: center;
+}
+
+#logo {
+    display: block;
+    margin: 0 auto;
+}
+
+.isSel{
+	background-color: red;
+}

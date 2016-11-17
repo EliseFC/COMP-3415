@@ -29,12 +29,6 @@ div.panel-right{
 .selectlist li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
 .selectlist li:hover { background:white; color:black; transition:.1s;}
 
-.selectlistsm .ui-selecting { background: black; color:white;}
-.selectlistsm .ui-selected { background: #00427a; color: white; transition:.1s}
-.selectlistsm { list-style-type: none; margin: 0; padding: 0; width: 100%; }
-.selectlistsm li { margin: 3px; padding: 0.4em; font-size: 1.0em; height: 10px; }
-.selectlistsm li:hover { background:white; color:black; transition:.1s;}
-
 @media screen and (max-width: 866px) {
 	div.panel-left{
 		width:90%;

@@ -2,11 +2,15 @@
 var bSelected, rSelected, fSelected;
 
 var buildings,rooms,occupants,facilities;
+//hide the facilities panel for now
+$("#facPanel").hide();
 //disable the buttons before anything is selected
 $("#remBldg").button({disabled: true});
 $("#viewRoom").button({disabled: true});
 $("#addRoom").button({disabled: true});
 $("#remRoom").button({disabled: true});
+$("#addFac").button({disabled: true});
+$("#remFac").button({disabled: true});
 
 //hide view rooms button
 $("#switchRoom").hide();
@@ -50,11 +54,13 @@ $("#buildings").selectable({
 	selected: function(event, ui) {
 		//disable buttons that require room/facility selection
 		$("#remRoom").button({disabled: true});
+		$("#remFac").button({disabled: true});
 		$("#viewRoom").button({disabled: true});
 		$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");  
 		bSelected = $(ui.selected).text();
 		$("#remBldg").button({disabled: false});
 		$("#addRoom").button({disabled: false});
+		$("#addFac").button({disabled: false});
 		//update room title
 		$("#roomTitle").fadeOut('fast',function(){
 			$("#roomTitle").html("Rooms in " + bSelected);
@@ -67,7 +73,9 @@ $("#buildings").selectable({
 			$("#rooms").slideDown('fast');
 		});
 		//generate facilities list (query query blahblah)
-		$("#facDisplay").html("Building Facilities: "+buildings[0].facilites);
+		$("#facilitesList").empty();
+		//facilities = buildings.facilities.split(',');
+		console.log(buildings);
 	}
 });
 $("#rooms").selectable({
@@ -99,7 +107,7 @@ $("#dialog-addBldg" ).dialog({
 					console.log("***ERROR adding building***" +response.error_message);
 				}else{
 					console.log("**Sucessfully saved new building!**");
-					$("#dialog-addBldg").dialog("close");
+					$( this ).dialog( "close" );
 			
 				$("#buildings").fadeOut(function(){
 					updateBuildings();
@@ -155,10 +163,22 @@ $("#dialog-remBldg" ).dialog({
 	show: 'fold'
 });
 
+//facilities selectable list
+$("#facilitesList").selectable({
+	selected: function(event, ui) { 
+		$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected"); 
+		fSelected = $(ui.selected).text();			
+		$("#remFac").button({disabled: false});
+	}                   
+});
+
 //view facilites button
-$("#editFac").click(function(event){
-	alert("editfac?");
-	$("#dialog-editFac").dialog("open");
+$("#viewFac").click(function(event){
+	$("#viewFac").hide();
+	$("#switchRoom").show();
+	$("#roomPanel").fadeOut('fast',function(){
+		$("#facPanel").fadeIn('fast');
+	});
 });
 //view rooms button
 $("#switchRoom").click(function(event){
@@ -174,7 +194,7 @@ $("#dialog-viewRoom" ).dialog({
 	autoOpen: false,
 	resizable: false,
 	height: "auto",
-	width: 650,
+	width: 550,
 	modal: true,
 	buttons: {
 		"OK": function() {
@@ -197,7 +217,6 @@ $("#dialog-editEquip" ).dialog({
 	buttons: {
 		"OK": function() {
 			$( this ).dialog( "close" );
-			
 		},
 		Cancel: function() {
 			$( this ).dialog( "close" );
@@ -219,7 +238,7 @@ $("#viewRoom").click(function(event){
 		if(!response.success){
 			console.log("***error getting occupants***"+response.error_message);
 		}else{
-			//occupants= response.occupants;
+			occupants = response.occupants;
 			console.log("**Sucessfully got occupants!**");
 			$("#roomDetails").html(
 			'Building: ' + bSelected +
@@ -227,13 +246,13 @@ $("#viewRoom").click(function(event){
 			'<br>Devices: ' + rooms[$('#rooms .ui-selected').index()].devices +
 			'<br>Occupant(s): '+
 			'<div style="height:65%;width:100%;overflow-y:scroll">'+
-			'<ul class="selectlistsm" id="oList">'+
-			'</ul>'+
+			'<ol class="selectlist" id="oList">'+
+			'</ol>'+
 			'</div>'
 			);
-			if(response.occupants[0]){
-				response.occupants.forEach(function(entry){
-					$("#oList").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.student+'<br>'+entry.start_date+'->'+entry.end_date+'</li>');
+			if(occupants){
+				occupants.forEach(function(entry){
+					$("#oList").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.student+': '+entry.name+'<br>'+entry.start_date+'->'+entry.end_date+'</li>');
 				});
 			}else{
 				$("#oList").append('<li class="style=ui-widget-content">Unoccupied</li>');
@@ -315,7 +334,7 @@ $("#remRoom").click(function(event){
 });
 
 //dialog addfac
-$("#dialog-editFac" ).dialog({
+$("#dialog-addFac" ).dialog({
 	autoOpen: false,
 	resizable: false,
 	height: "auto",
@@ -331,6 +350,12 @@ $("#dialog-editFac" ).dialog({
 	},
 	hide: 'fold',
 	show: 'fold'
+});
+
+//add facility button
+$("#addFac").click(function(event){
+	$("#addFacDetails").html("Editing facilities for " + bSelected);
+	$("#dialog-addFac").dialog("open");
 });
 
 //dialog remove fac

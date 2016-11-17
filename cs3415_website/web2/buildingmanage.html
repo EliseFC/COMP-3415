@@ -32,9 +32,13 @@
 	<div id="remRoomDetails"></div></p>
 </div>
 
-<div id="dialog-editFac" title="Edit Facilitie">
-	<label>Edit Facilities:</label>
-	<input type="text" name="editFacText" id="editFacText">
+<div id="dialog-addFac" title="Add Facility">
+	<label>New Facility:</label>
+	<input type="text" name="newFacility" id="newFacility">
+</div>
+
+<div id="dialog-remFac" title="Remove Facility">
+	<div id="remFacDetails"></div>
 </div>
 
 <h3>Building Management</h3>
@@ -51,13 +55,13 @@
 	</div>
 	<button id="newBldg" class="ui-button ui-widget ui-corner-all">Add</button>
 	<button id="remBldg" class="ui-button ui-widget ui-corner-all">Remove Selected</button>
-	<button id="editFac" class="ui-button ui-widget ui-corner-all">Edit Facilities</button>
+	<button id="viewFac" class="ui-button ui-widget ui-corner-all">View Facilities</button>
+	<button id="switchRoom" class="ui-button ui-widget ui-corner-all">View Rooms</button>
 </div>
 
 <!--rooms panel-->
 <div class = "main panel-right">
 	<div id = "roomPanel">
-	<div id = "facDisplay"></div>
 	<h3><div id="roomTitle">Rooms</div></h3>
 	<div style="height:65%;width:100%;overflow-y:scroll">
 		<ol class="selectlist"  id="rooms">
@@ -68,6 +72,15 @@
 	<button id="addRoom" class="ui-button ui-widget ui-corner-all">Add</button>
 	<button id="remRoom" class="ui-button ui-widget ui-corner-all">Remove</button>
 	</div>
+	<div id = "facPanel">
+	<h3><div id="roomTitle">Facilities</div></h3>
+	<div style="height:65%;width:100%;overflow-y:scroll;z-index: 10">
+		<ol class="selectlist"  id="facilitesList">
+		<!--Starts empty, generated later-->
+		</ol>
+	</div>
+	<button id="addFac" class="ui-button ui-widget ui-corner-all">Add</button>
+	<button id="remFac" class="ui-button ui-widget ui-corner-all">Remove</button>
 	</div>
 </div>
 

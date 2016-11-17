@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Test</title>
+		<script type="text/javascript" src="api.js"></script>
+	</head>
+	<body>
+		<script>
+			function search() {
+				var name = document.getElementById('name').value;
+				getFromDB(name, function(responseJson) {
+					if(!responseJson.success) {
+						// there was an error
+						document.getElementById('text-area').innerHTML = "Error!<br />Error msg: " + responseJson.error_message + "<br />";
+					} else {
+						// success
+						document.getElementById('text-area').innerHTML = "Success!<br />"
+						+ "<br />name: " + responseJson.name
+						+ "<br />userId: " + responseJson.userId
+						+ "<br />password: " + responseJson.password
+						+ "<br />userType: " + responseJson.userType + "<br />";
+					}
+				});
+			}
+		</script>
+		
+		<form>
+			<fieldset>
+				<label for="name">Name:</label>
+				<input type="text" id="name" />
+				<input type="button" value="Search DB" onclick="search()">
+			</fieldset>
+		</form>
+		
+		<div id="text-area">Output</div>
+	</body>
+</html>
