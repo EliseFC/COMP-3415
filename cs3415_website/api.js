@@ -18,8 +18,8 @@ var getRooms = function(buildingID, callback) {
 	api("?id=4&buildingID=" + buildingID, callback);
 }
 
-var addRoom = function(roomNo, buildingID, devices, capacity, callback) {
-	api("?id=5&roomNumber=" + roomNo + "&buildingID=" + buildingID + "&devices=" + devices + "&capacity=" + capacity, callback);
+var addRoom = function(roomNo, roomID, devices, capacity, callback) {
+	api("?id=5&roomNumber=" + roomNo + "&roomID=" + buildingID + "&devices=" + devices + "&capacity=" + capacity, callback);
 }
 
 var removeRoom = function(id, callback) {
@@ -39,7 +39,7 @@ var updateDevices = function(roomID, devices, callback) {
 }
 
 var updateFacilities = function(buildingID, facilities, callback) {
-	api("?id=10&roomID=" + buildingID + "&devices=" + facilities, callback);
+	api("?id=10&buildingID=" + buildingID + "&facilities=" + facilities, callback);
 }
 
 var removeOccupant = function(student_id, callback) {

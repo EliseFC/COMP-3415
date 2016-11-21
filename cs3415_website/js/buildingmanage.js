@@ -1,7 +1,10 @@
 //our variables for what is selected
 var bSelected, rSelected, fSelected;
 
-var buildings,rooms,occupants,facilities;
+var buildings, rooms, occupants;
+var facilities = [];
+
+var bIndex;
 //disable the buttons before anything is selected
 $("#remBldg").button({disabled: true});
 $("#viewRoom").button({disabled: true});
@@ -17,11 +20,14 @@ function updateBuildings(){
 	
 	getBuildings(function(response){
 		if(!response.success){
-			console.log("error getting buildings");
+			console.log("error getting buildings"+response.error_message);
 		}else{
 			buildings = response.buildings;
 			buildings.forEach(function(entry){
 				$("#buildings").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.name+': '+entry.type+'</li>');
+				//populate our facilities array
+				console.log(entry.facilities);
+				facilities.push(entry.facilities);
 			});
 			console.log("**Sucessfully fetched buildings!**");
 		}
@@ -34,7 +40,7 @@ function updateRooms(){
 	getRooms($('#buildings .ui-selected').attr('id'),function(response){
 		$("#rooms").empty();
 		if(!response.success){
-			console.log("error fetching rooms");
+			console.log("error fetching rooms"+response.error_message);
 		}else{
 			rooms = response.rooms;
 			rooms.forEach(function(entry){
@@ -48,13 +54,22 @@ function updateRooms(){
 //select functions
 $("#buildings").selectable({
 	selected: function(event, ui) {
+		//set the building selected index variable
+		
 		//disable buttons that require room/facility selection
 		$("#remRoom").button({disabled: true});
 		$("#viewRoom").button({disabled: true});
-		$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");  
-		bSelected = $(ui.selected).text();
 		$("#remBldg").button({disabled: false});
 		$("#addRoom").button({disabled: false});
+		
+		$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+		
+		//set the building selected index variable
+		bIndex = $(ui.selected).index();
+		
+		bSelected = $(ui.selected).text();
+		//change the statement issue text
+		$("#sbName").html("New Statement for "+bSelected);
 		//update room title
 		$("#roomTitle").fadeOut('fast',function(){
 			$("#roomTitle").html("Rooms in " + bSelected);
@@ -66,8 +81,8 @@ $("#buildings").selectable({
 			updateRooms();
 			$("#rooms").slideDown('fast');
 		});
-		//generate facilities list (query query blahblah)
-		$("#facDisplay").html("Building Facilities: "+buildings[0].facilites);
+		//generate facilities string
+		$("#facDisplay").html(bSelected+" facilities: "+facilities[bIndex]);
 	}
 });
 $("#rooms").selectable({
@@ -134,7 +149,7 @@ $("#dialog-remBldg" ).dialog({
 		"OK": function() {
 			removeBuilding($('#buildings .ui-selected').attr('id'),function(response){
 				if(!response.success){
-					console.log("error removing building");
+					console.log("error removing building"+response.error_message);
 					alert("whoops!");
 				}else{
 					console.log("**Sucessfully removed!**");
@@ -157,7 +172,7 @@ $("#dialog-remBldg" ).dialog({
 
 //view facilites button
 $("#editFac").click(function(event){
-	alert("editfac?");
+	$("#editFacText").val(facilities[bIndex]);
 	$("#dialog-editFac").dialog("open");
 });
 //view rooms button
@@ -323,6 +338,14 @@ $("#dialog-editFac" ).dialog({
 	modal: true,
 	buttons: {
 		"OK": function() {
+			updateFacilities($('#buildings .ui-selected').attr('id'),$("#editFacText").val(),function(response){
+				if(!response.success){
+					console.log(+"**ERROR editing facilities**" + response.error_message);
+				}else{
+					console.log("**Sucessfully updated facilites!**");
+				}
+			});
+			updateBuildings();
 			$( this ).dialog( "close" );
 		},
 		Cancel: function() {
@@ -332,13 +355,16 @@ $("#dialog-editFac" ).dialog({
 	hide: 'fold',
 	show: 'fold'
 });
-
-//dialog remove fac
-$("#dialog-remFac" ).dialog({
+//button for issueing statement
+$("#isBtn").click(function(event){
+	$("#dialog-issueSatement").dialog("open");
+});
+//dialog for issueing statement
+$("#dialog-issueSatement" ).dialog({
 	autoOpen: false,
-	resizable: false,
+	resizable: true,
 	height: "auto",
-	width: 300,
+	width: 600,
 	modal: true,
 	buttons: {
 		"OK": function() {
@@ -351,7 +377,6 @@ $("#dialog-remFac" ).dialog({
 	hide: 'fold',
 	show: 'fold'
 });
-
 //remove fac button
 $("#remFac").click(function(event){
 	$("#remFacDetails").html("Removing: " + fSelected);
