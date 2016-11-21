@@ -31,6 +31,11 @@ public class ProtocolManager {
 		packets.put(19, GetHousingRequests::new);
 		packets.put(20, ApproveRequest::new);
 		packets.put(21, DenyRequest::new);
+		packets.put(22, NewUser::new);
+		packets.put(23, GetUser::new);
+		packets.put(24, GetUsers::new);
+		packets.put(25, PromoteUser::new);
+		packets.put(26, RemoveUser::new);
 	}
 	
 	public Packet getPacketFromID(int id) {
