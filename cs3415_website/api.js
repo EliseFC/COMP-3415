@@ -18,8 +18,8 @@ var getRooms = function(buildingID, callback) {
 	api("?id=4&buildingID=" + buildingID, callback);
 }
 
-var addRoom = function(roomNo, roomID, devices, capacity, callback) {
-	api("?id=5&roomNumber=" + roomNo + "&roomID=" + buildingID + "&devices=" + devices + "&capacity=" + capacity, callback);
+var addRoom = function(roomNo, buildingID, devices, capacity, callback) {
+	api("?id=5&roomNumber=" + roomNo + "&buildingID=" + buildingID + "&devices=" + devices + "&capacity=" + capacity, callback);
 }
 
 var removeRoom = function(id, callback) {
@@ -84,6 +84,10 @@ var approveRequest = function(student_id, room_id, callback) {
 
 var denyRequest = function(student_id, callback) {
 	api("?id=21&studentID=" + student_id, callback);
+}
+
+var getUsers = function(callback){
+	apt("?id=24", callback);
 }
 
 var api = function(params, callback) {

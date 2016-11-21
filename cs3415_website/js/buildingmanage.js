@@ -16,6 +16,7 @@ $("#switchRoom").hide();
 
 //building list generation
 function updateBuildings(){
+	facilities = [];
 	$("#buildings").empty();
 	
 	getBuildings(function(response){
@@ -157,6 +158,7 @@ $("#dialog-remBldg" ).dialog({
 			});
 			$("#buildings").fadeOut(function(){
 				updateBuildings();
+				clearRooms();
 			});
 			$("#buildings").fadeIn();
 			
@@ -211,6 +213,17 @@ $("#dialog-editEquip" ).dialog({
 	modal: true,
 	buttons: {
 		"OK": function() {
+			
+			updateDevices($("#rooms .ui-selected").attr('id'),$("#inputEquip").val(),function(response){
+				
+				if(!response.success){
+					console.log("***error updating devices***"+response.error_message);
+				}else{
+					$("#vDev").html($("#inputEquip").val());
+					console.log("**Sucessfully updated devices**");
+				}
+				
+			});
 			$( this ).dialog( "close" );
 			
 		},
@@ -224,6 +237,7 @@ $("#dialog-editEquip" ).dialog({
 
 //edit equipment button
 $("#editEquip").click(function(event){
+	$("#inputEquip").val(rooms[$("#rooms .ui-selected").index()].devices);
 	$("#dialog-editEquip").dialog("open");
 });
 
@@ -239,7 +253,8 @@ $("#viewRoom").click(function(event){
 			$("#roomDetails").html(
 			'Building: ' + bSelected +
 			'<br>Room Number: ' + rSelected +
-			'<br>Devices: ' + rooms[$('#rooms .ui-selected').index()].devices +
+			'<br>Devices:<div id="vDev">' + rooms[$('#rooms .ui-selected').index()].devices + '</div>' +
+			'<br>Capacity: ' + rooms[$('#rooms .ui-selected').index()].capacity +
 			'<br>Occupant(s): '+
 			'<div style="height:65%;width:100%;overflow-y:scroll">'+
 			'<ul class="selectlistsm" id="oList">'+
@@ -271,7 +286,7 @@ $("#dialog-addRoom" ).dialog({
 	buttons: {
 		"OK": function() {
 			//function(roomNo, buildingID, devices, callback)
-			addRoom($("#newRoomName").val(),$('#buildings .ui-selected').attr('id'),$("#newRoomDevices").val(),function(response){
+			addRoom($("#newRoomName").val(),$('#buildings .ui-selected').attr('id'),$("#newRoomDevices").val(),$("#newRoomCap").val(),function(response){
 				if(!response.success){
 					console.log("***error adding room***"+response.error_message);
 					alert("whoops!");
@@ -293,6 +308,11 @@ $("#dialog-addRoom" ).dialog({
 //add room button
 $("#addRoom").click(function(event){
 	$("#addRoomDetails").html("Adding room to " + bSelected);
+	//clear the fields
+	$("#newRoomName").val("");
+	$("#newRoomDevices").val("");
+	$("#newRoomCap").val("");
+	//open the dialog
 	$("#dialog-addRoom").dialog("open");
 });
 
@@ -311,6 +331,7 @@ $("#dialog-remRoom" ).dialog({
 				}else{
 					console.log("**Sucessfully removed!**");
 				}
+				updateRooms();
 			});
 			updateRooms();
 			$( this ).dialog( "close" );
@@ -382,3 +403,15 @@ $("#remFac").click(function(event){
 	$("#remFacDetails").html("Removing: " + fSelected);
 	$("#dialog-remFac").dialog("open");
 });
+//function to clear room panel
+function clearRooms(){
+	//clear the contents
+	$("#facDisplay").html("");
+	$("#roomTitle").html("Select a building");
+	$("#rooms").empty();
+	
+	//disable the buttons
+	$("#viewRoom").button({disabled: true});
+	$("#addRoom").button({disabled: true});
+	$("#remRoom").button({disabled: true});
+}
