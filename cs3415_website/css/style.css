@@ -2,7 +2,7 @@
 * @Author: Elise
 * @Date:   2016-11-21 15:40:34
 */
-
+/*
 .cof-content li{
 	float: left;
 	margin: 1%;
@@ -42,4 +42,21 @@
 	position: relative;
 	text-align: center;
 	width: 9999px;
+}
+*/
+.selectable{
+	border:5px solid black;
+	width:75%;
+}
+
+.selectable:hover{
+	border:5px solid yellow;
+}
+
+.selected{
+	border:5px solid blue;
+}
+
+ul{
+	list-style: none;
 }

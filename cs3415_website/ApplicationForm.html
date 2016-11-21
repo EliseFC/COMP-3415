@@ -4,7 +4,7 @@
 	<title>Student application profile</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/panel.css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css"> 
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -20,7 +20,7 @@ src="./img/lulogo.png">
 
 <hr>
 <!--Form Start-->
-<form method="post" action="/profile/" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
 	      <input type="hidden" name="CS3415-Project" >
 	      <div class="page_section">
         
@@ -29,44 +29,39 @@ src="./img/lulogo.png">
 	  <tbody>
 	     
  		<!--Start House section-->
- 		<div data-role="content">
+ 		<div id="main_list" data-role="content">
  			<h3 class="title" id="one">First Year level House</h3>
  			<ul id="da-thumbs" class="cof-content clearfix">
- 				<li>
- 					<a href="#">
- 						<img src="img/Bartlay_Single.jpg" />
- 					</a>
+ 				<li id="house1" class="selectable">
+ 					<img src="img/Bartlay_Single.jpg" />
  				</li>
- 				<li>
- 					<a href="#">
- 						<img src="img/HallidayHall_Single.jpg" />
- 					</a>
+ 				<li id="house2" class="selectable">
+ 					<img src="img/HallidayHall_Single.jpg" />
  				</li>
  			</ul>
  			<h3 class="title" id="two">Appartment</h3>
  			<ul id="da-thumbs" class="cof-content clearfix">
- 				<li>
- 					<a href="#">
- 						<img src="img/Apartment_1.jpg" />
- 					</a>
+ 				<li id="house3" class="selectable">
+					<img src="img/Apartment_1.jpg" />
  				</li>
  			</ul>
  			<h3 class="title" id="three">Town House</h3>
  			<ul id="da-thumbs" class="cof-content clearfix">
- 				<li>
- 					<a href="#">
- 						<img src="img/Townhouse_livingRoom.jpg" />
- 					</a>
+ 				<li id="house4" class="selectable">
+ 					<img src="img/Townhouse_livingRoom.jpg" />
  				</li>
- 				<li>
- 					<a href="#">
- 						<img src="img/Townhouse_room.jpg" />
- 					</a>
+ 				<li id="house5" class="selectable">
+ 					<img src="img/Townhouse_room.jpg" />
  				</li>
  			</ul>
+		
 		</div>
-		 
-		 
+ 
+      <tr>
+        <th><label for="id_specialReqs">Do you have any special request</label></th>
+        <td><input id="id_specialReqs" name="specialReqs" type="text" size="100" value=""></td>
+      </tr>
+		
 	  </tbody>
 	</table>
 
