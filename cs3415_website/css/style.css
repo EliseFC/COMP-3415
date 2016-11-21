@@ -1,0 +1,45 @@
+/*
+* @Author: Elise
+* @Date:   2016-11-21 15:40:34
+*/
+
+.cof-content li{
+	float: left;
+	margin: 1%;
+	background: #ccc;
+	width: 45%;
+	padding: 1.5%;
+	font-size: 0;
+	border-radius: 5px;
+}
+.cof-content a{
+	display: block;
+	width: 100%;
+}
+.cof-content img{
+	border-radius: 5px;
+}
+
+.title{
+	margin: 1em auto;
+	padding: 1em 0;
+	width: 40%;
+	text-align: center;
+	background: #190608;
+	color: #fff;
+	border-radius: 5px;
+	font-weight: normal;
+}
+.nbs-flexisel-container{
+	position: relative;
+	max-width: 100%;
+}
+.nbs-flexisel-inner{
+	overflow: hidden;
+	margin: 0 auto;
+}
+.nbs-flexisel-ul{
+	position: relative;
+	text-align: center;
+	width: 9999px;
+}
