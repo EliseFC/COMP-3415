@@ -86,8 +86,28 @@ var denyRequest = function(student_id, callback) {
 	api("?id=21&studentID=" + student_id, callback);
 }
 
+var addUser = function(first_name, last_name, student_number, year, email, password, callback) {
+	api("?id=22&fName=" + first_name + "&lName=" + last_name + "&sNo=" + student_number + "&year=" + year + "&email=" + email + "&password=" + password, callback);
+}
+
+var getUserByEmail = function(email, callback) {
+	api("?id=23&email=" + email + "&userID=-1", callback);
+}
+
+var getUserByID = function(id, callback) {
+	api("?id=23&email=no&userID=" + id, callback);
+}
+
 var getUsers = function(callback){
-	apt("?id=24", callback);
+	api("?id=24", callback);
+}
+
+var promoteUserToManager = function(user_id, callback) {
+	api("?id=25&userID=" + user_id, callback);
+}
+
+var removeUser = function(user_id, callback) {
+	api("?id=26&userID=" + user_id, callback);
 }
 
 var api = function(params, callback) {
