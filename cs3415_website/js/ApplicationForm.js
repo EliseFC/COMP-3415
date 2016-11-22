@@ -1,4 +1,5 @@
 	
+
 $(document).ready(function(){
     $("#saveApplication").click(function(){
         alert("You Application has down!"+$(".selected").attr('id'));
