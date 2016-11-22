@@ -15,7 +15,7 @@
 						console.log("error getting issues"+response.error_message);
 					}else{
 						issues = response.issues;
-						if(issues){
+						if(issues.length > 0){
 							issues.forEach(function(entry2){
 							$("#resreqs").append('<li class="style=ui-widget-content" id="'+issues.issue+'">'+'Building: '+entry.name+ ' ' +issues.issue+'</li>');
 							});	
