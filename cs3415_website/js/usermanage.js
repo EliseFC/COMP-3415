@@ -1,5 +1,5 @@
 //our variables for what is selected
-	var uSelected;
+	var uIndex;
 	var users;
 	
 	//disable the edit details and remove buttons before anything is selected
@@ -10,11 +10,28 @@
 	$("#userlist").selectable({
 		selected: function(event, ui) {
 			$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");  
-			uSelected = $(ui.selected).text();
+			uIndex = $(ui.selected).index();
 			$("#editDetails").button({disabled: false});
 			$("#remUser").button({disabled: false});
 			//update user details form
-			$("#userDetails").html('Selected: '+uSelected);
+			getUserByID(users[uIndex].user_id,function(response){
+				if(!response.success){
+					console.log("**Error retrieving user info**"+response.error_message);
+				}else{
+					console.log("**Successfully retrieved user info**");
+					//Generate user info page
+					$("#userDetails").html(
+					'Student ID:'+response.user.student_number+'<br>'+
+					'First Name:'+response.user.first_name+'<br>'+
+					'Last Name:'+response.user.last_name+'<br>'+
+					'Year Level:'+response.user.year+'<br>'+
+					'Account Type:'+response.user.email+'<br>'+
+					'Student ID:'+users[uIndex].student_number+'<br>'+
+				);
+				});
+				
+			});
+			
 		}                   
 	});
 	
@@ -47,7 +64,6 @@
 		modal: true,
 		buttons: {
 			"OK": function() {
-				//function(first_name, last_name, student_number, year, email, password, callback) {
 				addUser($("#fnText").val(),$("#lnText").val(),$("#snText").val(),$("#ylText").val(),$("#emText").val(),$("#pwText").val(),function(response){
 					if(!response.success){
 						console.log("**Error adding new user!**"+response.error_message);
@@ -93,6 +109,14 @@
 		modal: true,
 		buttons: {
 			"Comfirm": function() {
+				removeUser($('#userlist .ui-selected').attr('id'),function(response){
+					if(!response.success){
+						console.log("**Error removing user!**"+response.error_message);
+					}else{
+						console.log("**Removed user!**");
+						updateUsers();
+					}
+				});
 				$( this ).dialog( "close" );
 			},
 			Cancel: function() {
@@ -120,7 +144,7 @@
 	//remove selected user
 	$("#remUser").click(function(event){
 		$("#dialog-remuser").dialog("open");
-		$("#remUserContents").html('Removing: ' + uSelected);
+		$("#remUserText").html('Removing: ' + uSelected + '<br>Are you sure?');
 	});
 	
 	$("#userSearch").keypress(function(e) {
