@@ -7,19 +7,18 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="./js/rejister.js"></script> 
 <script src="./api.js"></script>
+<script src="./js/rejister.js"></script> 
+
 
 </head> 
 
 <body> <div id='nav_bar'> <ul> <li><a href="shome.html">Back</a></li>
 <li><a href="slogin.html">Log Out</a></li>
-</ul> </div> <h3>Welcome to the Lakehead Residence Application!</h3> <img id ='logo'
+</ul> </div> <h3>To create an account!</h3> <img id ='logo'
 src="./img/lulogo.png">
 
 <hr>
-<!--Form Start-->
-<form method="post" action="/profile/" enctype="multipart/form-data">
 	      <input type="hidden" name="CS3415-Project" >
 	      <div class="page_section">
         
@@ -51,8 +50,8 @@ src="./img/lulogo.png">
 	      </tr>
 		  
 	  	  <tr>
-	  	  	  	<th><label for="id_campus">Year levle</label></th>
-	  	  	    <td><select id="id_campus" name="campus">
+	  	  	  	<th><label for="id_year">Year levle</label></th>
+	  	  	    <td><select id="id_year" name="campus">
 	  	 <option value=" "selected="selected">First Year</option>
 	  	 <option value=" ">Second year</option>
 	  	 <option value=" ">Third Year</option>
@@ -74,6 +73,5 @@ src="./img/lulogo.png">
 	      <fieldset class="button_bar">
 	        <input type="submit" id="saveRegister" value="save and countinuous">
 	      </fieldset>
-	    </form>
 </body>
 </html>

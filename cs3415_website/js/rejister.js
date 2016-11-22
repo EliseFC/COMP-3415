@@ -1,23 +1,23 @@
-function createAccount(){
-	$("#").empty();
-	
-	getBuildings(function(response){
-		if(!response.success){
-			console.log("error getting buildings");
-		}else{
-			buildings = response.buildings;
-			buildings.forEach(function(entry){
-				$("#buildings").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.name+': '+entry.type+'</li>');
-			});
-			console.log("**Sucessfully fetched buildings!**");
-		}
-	});
-}
-
 
 $(document).ready(function(){
     $("#saveRegister").click(function(){
-        alert("You have create an account!");
-    });
+		if($("#pwd").val()==$("#pwd2").val()){
+			addUser(
+			$('#id_First_name').val(),
+			$("#id_Last_name").val(),
+			$("#id_ID").val(),
+			$("#id_year").index()+1,
+			$("#id_Email").val(),
+			$("#pwd").val(),function(response){
+						if(!response.success){
+							console.log("***error to create new account***"+response.error_message);
+						}else{
+							console.log("**Sucessfully Create an new account!**");
+						}
+					});
+		}else{
+			alert("passwords don't match");
+		}
+			});
 });
 
