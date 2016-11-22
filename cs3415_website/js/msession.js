@@ -1,12 +1,26 @@
 //MSESSION.JS
 //FOR TRACKING MANAGER SESSION, CHANGE AS NEEDED
 $( document ).ready(function(){
-	var testing;
+	var creds;
 	if(sessionStorage.managerSession){
-		testing = JSON.parse(sessionStorage.managerSession);
-		//alert("Username: " + testing.username + "\nPassword:: " + testing.password);
+		creds = JSON.parse(sessionStorage.managerSession);
+		
+		getUserByEmail(creds.username,function(response){
+			if(!response.success){
+				console.log("**Didn't get the user info**"+response.error_message);
+				bootMe();
+			}else{
+				if(response.user.password!=creds.password){
+					bootMe();
+				}
+			}
+		});
 	}else{
-		alert("Session Expired");
+		bootMe();
+		window.location.href = 'index.html';
+	}
+	function bootMe(){
+		alert("Incorrect login info, or session expired!");
 		window.location.href = 'index.html';
 	}
 });

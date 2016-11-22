@@ -14,24 +14,7 @@
 			$("#editDetails").button({disabled: false});
 			$("#remUser").button({disabled: false});
 			//update user details form
-			getUserByID(users[uIndex].user_id,function(response){
-				if(!response.success){
-					console.log("**Error retrieving user info**"+response.error_message);
-				}else{
-					console.log("**Successfully retrieved user info**");
-					//Generate user info page
-					$("#userDetails").html(
-					'Student ID:'+response.user.student_number+'<br>'+
-					'First Name:'+response.user.first_name+'<br>'+
-					'Last Name:'+response.user.last_name+'<br>'+
-					'Year Level:'+response.user.year+'<br>'+
-					'Account Type:'+response.user.email+'<br>'+
-					'Student ID:'+users[uIndex].student_number+'<br>'+
-				);
-				});
-				
-			});
-			
+			updateUserDetails();
 		}                   
 	});
 	
@@ -48,6 +31,26 @@
 				$("#userlist").append('<li class="style=ui-widget-content" id="'+entry.user_id+'">ID: '+entry.student_number+': '+entry.last_name+'</li>');
 			});
 			}
+		});
+	}
+	function updateUserDetails(){
+		getUserByID(users[uIndex].user_id,function(response){
+			if(!response.success){
+				console.log("**Error retrieving user info**"+response.error_message);
+			}else{
+				console.log("**Successfully retrieved user info**");
+				//Generate user info page
+				$("#userDetails").html(
+				'Student ID:'+response.user.student_number+'<br>'+
+				'First Name:'+response.user.first_name+'<br>'+
+				'Last Name:'+response.user.last_name+'<br>'+
+				'Year Level:'+response.user.year+'<br>'+
+				'Email:'+response.user.email+'<br>'+
+				'Account Type:'+response.user.account_type+'<br>'+
+				'House Request:'+response.user.request_building+'<br>'
+			);
+			}
+			
 		});
 	}
 	
@@ -136,9 +139,16 @@
 	
 	
 	//edit selected user details
-	$("#editDetails").click(function(event){
-		$("#dialog-edituser").dialog("open");
-		//populate form with user details
+	$("#mmBtn").click(function(event){
+		promoteUserToManager($('#userlist .ui-selected').attr('id'),function(response){
+			if(!response.success){
+					console.log("**Error promoting user!**"+response.error_message);
+				}else{
+					console.log("**Promoted user!**");
+					updateUsers();
+					updateUserDetails();
+				}
+		});
 	});
 	
 	//remove selected user
