@@ -1,4 +1,4 @@
-
+/* Send the account aplication to database */
 $(document).ready(function(){
     $("#saveRegister").click(function(){
 		if($("#pwd").val()==$("#pwd2").val()){
@@ -16,7 +16,7 @@ $(document).ready(function(){
 						}
 					});
 		}else{
-			alert("passwords don't match");
+			alert("***passwords don't match!***");
 		}
 			});
 });
