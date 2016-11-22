@@ -63,7 +63,7 @@ var getNotifications = function(building_id, callback) {
 }
 
 var addNotification = function(building_id, notification, callback) {
-	api("?id=16&buildingID=" + buildingID + "&notification=" + notification, callback);
+	api("?id=16&buildingID=" + building_id + "&notification=" + notification, callback);
 }
 
 var removeNotification = function(notification_id, callback) {

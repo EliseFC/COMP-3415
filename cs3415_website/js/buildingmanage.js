@@ -389,14 +389,15 @@ $("#dialog-issueSatement" ).dialog({
 	modal: true,
 	buttons: {
 		"OK": function() {
-			addNotification($('#buildings .ui-selected').attr('id'),,function(response){
+			addNotification($('#buildings .ui-selected').attr('id'),$("#statementText").val(),function(response){
 				if(!response.success){
 					console.log(+"**ERROR posting notification**" + response.error_message);
 				}else{
 					console.log("**Sucessfully posted notification**!**");
 				}
-			}
+			});
 			$( this ).dialog( "close" );
+			$("#statementText").val("");
 		},
 		Cancel: function() {
 			$( this ).dialog( "close" );

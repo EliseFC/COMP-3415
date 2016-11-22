@@ -3,32 +3,7 @@
 	
 	var buildings, issues;
 	
-	//get the issues, first get the buildings, to get the issues
-	getBuildings(function(response){
-		if(!response.success){
-			console.log("error getting buildings"+response.error_message);
-		}else{
-			buildings = response.buildings;
-			buildings.forEach(function(entry){
-				getIssues(entry.id,function(response){
-					if(!response.success){
-						console.log("error getting issues"+response.error_message);
-					}else{
-						issues = response.issues;
-						if(issues.length > 0){
-							issues.forEach(function(entry2){
-							$("#resreqs").append('<li class="style=ui-widget-content" id="'+issues.issue+'">'+'Building: '+entry.name+ ' ' +issues.issue+'</li>');
-							});	
-						}else{
-							$("#resreqs").append('<li class="style=ui-widget-content">No Issues for:'+entry.name+'</li>');
-						}
-					}
-				});
-			});
-		}
-		console.log("**Sucessfully fetched buildings!**");
-	});
-	
+	updateIssues();
 	
 	
 	//disable the "view" buttons before anything is selected
@@ -105,3 +80,31 @@
 		//GET ACTUAL DETAILS...
 		$("#HouseDetailsText").html("Selected: " +hSelected);
 	});
+	
+	updateIssues function(){
+		//get the issues, first get the buildings, to get the issues
+		getBuildings(function(response){
+			if(!response.success){
+				console.log("error getting buildings"+response.error_message);
+			}else{
+				buildings = response.buildings;
+				buildings.forEach(function(entry){
+					getIssues(entry.id,function(response){
+						if(!response.success){
+							console.log("error getting issues"+response.error_message);
+						}else{
+							issues = response.issues;
+							if(issues.length > 0){
+								issues.forEach(function(entry2){
+								$("#resreqs").append('<li class="style=ui-widget-content" id="'+issues.issue+'">'+'Building: '+entry.name+ ' ' +issues.issue+'</li>');
+								});	
+							}else{
+								$("#resreqs").append('<li class="style=ui-widget-content">No Issues for:'+entry.name+'</li>');
+							}
+						}
+					});
+				});
+			}
+			console.log("**Sucessfully fetched buildings!**");
+		});
+	}
