@@ -1,5 +1,6 @@
 //our variables for what is selected
 	var uSelected;
+	var users;
 	
 	//disable the edit details and remove buttons before anything is selected
 	$("#editDetails").button({disabled: true});
@@ -17,13 +18,20 @@
 		}                   
 	});
 	
-	//make some junk for the users for now
-	//THIS WILL COME FROM DATABSE AFTER
+	//function to update the user list
 	function updateUsers(){
 		$("#userlist").empty();
-		for(i=0;i<5;i++){
-			$("#userlist").append('<li class="style=ui-widget-content" id="userID' + i + '"> Something '+i+'</li>');
-		}
+		getUsers(function(response){
+			if(!response.success){
+				console.log("**Error retrieving users**"+response.error_message);
+			}else{
+				console.log("**Successfully retrieved users**");
+				users = response.users;
+				users.forEach(function(entry){
+				$("#userlist").append('<li class="style=ui-widget-content" id="'+entry.user_id+'">ID: '+entry.student_number+': '+entry.last_name+'</li>');
+			});
+			}
+		});
 	}
 	
 	//update the users(we will call this whenever we change anything)
@@ -39,7 +47,15 @@
 		modal: true,
 		buttons: {
 			"OK": function() {
-				//Update user details pane, database entry,etc.
+				//function(first_name, last_name, student_number, year, email, password, callback) {
+				addUser($("#fnText").val(),$("#lnText").val(),$("#snText").val(),$("#ylText").val(),$("#emText").val(),$("#pwText").val(),function(response){
+					if(!response.success){
+						console.log("**Error adding new user!**"+response.error_message);
+					}else{
+						console.log("**Added new user!**");
+						updateUsers();
+					}
+				});
 				$( this ).dialog( "close" );
 			},
 			Cancel: function() {

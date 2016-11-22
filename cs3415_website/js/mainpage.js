@@ -81,7 +81,7 @@
 		$("#HouseDetailsText").html("Selected: " +hSelected);
 	});
 	
-	updateIssues function(){
+	function updateIssues(){
 		//get the issues, first get the buildings, to get the issues
 		getBuildings(function(response){
 			if(!response.success){
