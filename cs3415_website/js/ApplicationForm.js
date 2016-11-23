@@ -9,7 +9,7 @@ $(document).ready(function(){
 		}else{
 			console.log("**Successfully get user inform**");
 			user = response.user;
-			console.log(user);
+			//console.log(user);
 			//check whether is first year level
 			if(user.year<2){
 				$("#secondyear").hide();
