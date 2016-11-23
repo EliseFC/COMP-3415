@@ -3,8 +3,21 @@
 	
 	var buildings, issues, hrs,user,building;
 	
+	var users;
+	
 	updateIssues();
 	updateHRs();
+	
+	//get the users and stuff them into 'users'
+	
+	getUsers(function(response){
+		if(!response.success){
+			console.log("**Error retrieving users**"+response.error_message);
+		}else{
+			console.log("**Successfully retrieved users**");
+			users = response.users;
+		}
+	});
 	
 	$("#roomPanel").hide();
 	
@@ -62,6 +75,18 @@
 		updateRooms();
 	});
 	
+	$("#deny").click(function(event){
+		denyRequest(hrs[$('#housereqs .ui-selected').index()].student_id,function(response){
+			if(!response.success){
+				console.log("**error denying request***"+response.error_message);
+			}else{
+				console.log("**denied!!!***");
+				$("#reqDetails").html("");
+				updateHRs();
+			}
+		});
+	});
+	
 	
 	$("#dialog-resreq" ).dialog({
 		autoOpen: false,
@@ -112,7 +137,7 @@
 							issues = response.issues;
 							if(issues.length > 0){
 								issues.forEach(function(entry2){
-								$("#resreqs").append('<li class="style=ui-widget-content" id="'+issues.issue+'">'+'Building: '+entry.name+ ' ' +issues.issue+'</li>');
+								$("#resreqs").append('<li class="style=ui-widget-content" id="'+issues.issue_id+'">'+'Building: '+entry.name+' Student ID: '+entry2.student_id+'</li>');
 								});	
 							}
 						}
@@ -122,7 +147,16 @@
 			console.log("**Sucessfully fetched buildings!**");
 		});
 	}
-	
+	//TEST FUNCTIONS DELETE LATERRRRR
+	$("#testResreq").click(function(event){
+		addIssue(18,buildings[0].id,"I HAVE AN ISSUE PLS HALP",function(response){
+			if(!response.success){
+				console.log("**Error setting issue!***"+response.error_message);
+			}else{
+				console.log("**set issue***");
+			}
+		});
+	});
 	$("#testReq").click(function(event){
 		addHousingRequest(18,"2 ply extra strong toilet paper",buildings[0].id,function(response){
 			if(!response.success){
