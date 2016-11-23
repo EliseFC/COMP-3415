@@ -112,6 +112,11 @@ $("#rooms").selectable({
 		$("#remRoom").button({disabled: false});
 	}                   
 });
+$("#statementlist").selectable({
+	selected: function(event, ui) {
+		$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+	}
+});
 
 //Add building button
 $("#newBldg").click(function(event){
@@ -409,9 +414,10 @@ $("#dialog-issueSatement" ).dialog({
 		"OK": function() {
 			addNotification($('#buildings .ui-selected').attr('id'),$("#statementText").val(),function(response){
 				if(!response.success){
-					console.log(+"**ERROR posting notification**" + response.error_message);
+					console.log("**ERROR posting notification**" + response.error_message);
 				}else{
 					console.log("**Sucessfully posted notification**!**");
+					updateStatements();
 				}
 			});
 			$( this ).dialog( "close" );
@@ -441,3 +447,14 @@ function clearRooms(){
 	$("#addRoom").button({disabled: true});
 	$("#remRoom").button({disabled: true});
 }
+
+$("#rmSt").click(function(event){
+	removeNotification(6,function(response){
+		if(!response.success){
+				console.log("**ERROR removing notification**" + response.error_message);
+			}else{
+				console.log("**Sucessfully removed notification**!**");
+				updateStatements();
+			}
+	});
+});

@@ -67,7 +67,7 @@ var addNotification = function(building_id, notification, callback) {
 }
 
 var removeNotification = function(notification_id, callback) {
-	api("?id=17&notificationID = " + notification_id, callback);
+	api("?id=17&notificationID =" + notification_id, callback);
 }
 
 var addHousingRequest = function(student_id, request, requested_building_id, callback) {
