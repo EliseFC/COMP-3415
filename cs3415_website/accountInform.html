@@ -1,0 +1,66 @@
+<html> 
+<head> 
+	<title>Student application profile</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/panel.css" />
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="./api.js"></script>
+<script src="./js/sAccount.js"></script> 
+
+
+</head> 
+
+<body> 
+	<div id='nav_bar'> 
+		<ul> 
+			<li><a href="shome.html">Home</a></li>
+			<li><a href="slogin.html">Log Out</a></li>
+		</ul> 
+	</div> 
+	<img id ='logo' src="./img/lulogo.png">
+<hr>
+	      <input type="hidden" name="CS3415-Project" >
+	 <div class="page_section">
+        
+<h3>Application Profile</h3>
+	<table class="dicttable">
+	  <tbody>
+	      <tr>
+	        <th><label for="id_First_name">First Name</label></th>
+	        <td><input id="id_First_name" name="First_name" type="text" ></td>
+	      </tr>
+	
+	      <tr>
+	        <th><label for="id_Last_name">Last Name</label></th>
+	        <td><input id="id_Last_name" name="Last_name" type="text" ></td>
+	      </tr>
+		  
+	      <tr>
+	        <th><label for="id_Email">Email </label></th>
+	        <td><input id="id_Email" name="Email" type="text" ></td>
+	      </tr>
+		  
+	  	  <tr>
+	  	  	 <th><label for="id_year">Year levle</label></th>
+	  	  	  <td><input id="id_year" name="yearLeverl" type="text"></td>
+	  	  </tr>
+		  
+	  	  <tr>
+	  	    <th><label for="id_ID">Student ID </label></th>
+	  	    <td><input id="id_ID" name="ID" type="text" ></td>
+	  	   </tr>
+	  	
+      	 <tr>
+        	 <th><label for="id_building">Buiding Type</label></th>
+        	 <td><input id="id_building" name="building" type="text" ></td>
+      	</tr>
+	  	  </tbody>
+	  	</table>
+	      </div>
+	      <fieldset class="button_bar">
+	        <input type="submit" id="saveRegister" value="save and countinuous">
+	      </fieldset>
+</body>
+</html>
