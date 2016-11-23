@@ -1,54 +1,44 @@
 /*
-* @Author: Elise
-* @Date:   2016-11-21 15:40:34
+* @Autor: Elise
 */
-/*
-.cof-content li{
-	float: left;
-	margin: 1%;
-	background: #ccc;
-	width: 45%;
-	padding: 1.5%;
-	font-size: 0;
-	border-radius: 5px;
+.page_section{
+	padding: 0 40px;
 }
-.cof-content a{
+
+.clearfix:after{
+	content: '';
 	display: block;
-	width: 100%;
+	clear: both;
 }
-.cof-content img{
-	border-radius: 5px;
+
+.clearfix{
+	zoom: 1;
+}
+.selectable{
+	border:5px solid black;
+	float: left;
+	margin-right: 40px;
+	cursor: pointer;
+}
+
+.selectable img{
+	width:350px;
+	height:350px;
 }
 
 .title{
-	margin: 1em auto;
-	padding: 1em 0;
-	width: 40%;
+	border-top: 1px solid #ccc;
 	text-align: center;
-	background: #190608;
-	color: #fff;
-	border-radius: 5px;
-	font-weight: normal;
-}
-.nbs-flexisel-container{
-	position: relative;
-	max-width: 100%;
-}
-.nbs-flexisel-inner{
-	overflow: hidden;
-	margin: 0 auto;
-}
-.nbs-flexisel-ul{
-	position: relative;
-	text-align: center;
-	width: 9999px;
-}
-*/
-.selectable{
-	border:5px solid black;
-	width:75%;
+	margin: 30px 0 20px;
+	font-family: Arial;
 }
 
+.title span{
+	position: relative;
+	background: #fff;
+	padding: 0 40px;
+	top: -10px;
+}
 .selectable:hover{
 	border:5px solid yellow;
 }
@@ -57,6 +47,38 @@
 	border:5px solid blue;
 }
 
-ul{
+.con-content{
 	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.specialReqs{
+	margin: 20px 0;
+}
+
+.specialReqs label{
+	font-family: Arial;
+	vertical-align: middle;
+}
+
+.specialReqs input{
+	border: 1px solid #ccc;
+	outline: 0 none;
+	vertical-align: middle;
+	width: 600px;
+	height: 34px;
+}
+
+#saveApplication{
+	border: 1px solid #ccc;
+	outline: 0 none;
+	height: 34px;
+	width: 180px;
+	background: #fff;
+	cursor: pointer;
+}
+
+#saveApplication:hover{
+	background: #ddd;
 }
