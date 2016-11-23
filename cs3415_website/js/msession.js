@@ -23,4 +23,6 @@ $( document ).ready(function(){
 		alert("Incorrect login info, or session expired!");
 		window.location.href = 'index.html';
 	}
+	//if all is OK
+	$("#logUser").html("Logged in as: "+creds.username);
 });

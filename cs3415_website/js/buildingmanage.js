@@ -1,7 +1,7 @@
 //our variables for what is selected
 var bSelected, rSelected, fSelected;
 
-var buildings, rooms, occupants;
+var buildings, rooms, occupants, notifs;
 var facilities = [];
 
 var bIndex;
@@ -52,6 +52,22 @@ function updateRooms(){
 	});
 }
 
+//update statement list
+function updateStatements(){
+	$("#statementlist").empty();
+	getNotifications($('#buildings .ui-selected').attr('id'),function(response){
+		if(!response.success){
+			console.log("**error fetching notifications**"+response.error_message);
+		}else{
+			notifs = response.notifications;
+			notifs.forEach(function(entry){
+				$("#statementlist").append('<li class="style=ui-widget-content" id="'+entry.notification_id+'">'+entry.notification+'</li>');
+			});
+			console.log("**Sucessfully fetched notifications****");
+		}
+	});
+}
+
 //select functions
 $("#buildings").selectable({
 	selected: function(event, ui) {
@@ -84,6 +100,8 @@ $("#buildings").selectable({
 		});
 		//generate facilities string
 		$("#facDisplay").html(bSelected+" facilities: "+facilities[bIndex]);
+		
+		updateStatements();
 	}
 });
 $("#rooms").selectable({

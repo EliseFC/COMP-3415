@@ -1,10 +1,10 @@
 //our variables for what is selected
 	var rSelected, hSelected;
 	
-	var buildings, issues;
+	var buildings, issues, hrs;
 	
 	updateIssues();
-	
+	updateHRs();
 	
 	//disable the "view" buttons before anything is selected
 	$("#viewResreq").button({disabled: true});
@@ -98,13 +98,25 @@
 								issues.forEach(function(entry2){
 								$("#resreqs").append('<li class="style=ui-widget-content" id="'+issues.issue+'">'+'Building: '+entry.name+ ' ' +issues.issue+'</li>');
 								});	
-							}else{
-								$("#resreqs").append('<li class="style=ui-widget-content">No Issues for:'+entry.name+'</li>');
 							}
 						}
 					});
 				});
 			}
 			console.log("**Sucessfully fetched buildings!**");
+		});
+	}
+	
+	function updateHRs(){
+		getHousingRequests(function(response){
+			if(!response.success){
+				console.log("**Error getting housing requests!***"+response.error_message);
+			}else{
+				console.log("**Got housing requests***");
+				hrs = response.requests;
+				hrs.forEach(function(entry){
+					$("#housereqs").append('<li class="style=ui-widget-content" id="'+entry.student_id+'">'+'ID: '+entry.student_id+ ' Building: ' +entry.building_id+'</li>');
+				});
+			}
 		});
 	}

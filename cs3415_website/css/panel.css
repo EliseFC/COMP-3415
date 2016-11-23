@@ -43,3 +43,31 @@ div.panel-right{
 		width:90%;
 	}
 }
+
+table, tr, th {
+    border: 1px solid black;
+	transition:.2s;
+}
+
+tr, th {
+    padding: 15px;
+    text-align: left;
+	background: white;
+}
+
+.tableLeft{
+	width:130px;
+	background-color:#00427a;
+	color:white;
+	text-align: right;
+}
+
+.ui-button{
+	padding:15px;
+}
+.newUserForm{
+	padding:0;
+}
+#userDetails{
+	padding:15px;
+}

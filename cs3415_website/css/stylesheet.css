@@ -53,3 +53,9 @@ h3{
 .isSel{
 	background-color: red;
 }
+
+#logUser{
+	float:right;
+	color:white;
+	padding:14px;
+}

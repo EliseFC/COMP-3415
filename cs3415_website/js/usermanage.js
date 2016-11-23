@@ -3,16 +3,24 @@
 	var users;
 	
 	//disable the edit details and remove buttons before anything is selected
-	$("#editDetails").button({disabled: true});
-	$("#remUser").button({disabled: true});
+	function clearDetails(){
+		$("#editDetails").button({disabled: true});
+		$("#remUser").button({disabled: true});
+		$("#mmBtn").button({disabled: true});
+		$("#userDetails").html("Please select a user.");
+	}
+	
+	clearDetails();
 	
 	//select functions
 	$("#userlist").selectable({
 		selected: function(event, ui) {
 			$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");  
 			uIndex = $(ui.selected).index();
+			//activate inactive buttons
 			$("#editDetails").button({disabled: false});
 			$("#remUser").button({disabled: false});
+			$("#mmBtn").button({disabled: true});
 			//update user details form
 			updateUserDetails();
 		}                   
@@ -34,20 +42,22 @@
 		});
 	}
 	function updateUserDetails(){
-		getUserByID(users[uIndex].user_id,function(response){
+		getUserByID($('#userlist .ui-selected').attr('id'),function(response){
 			if(!response.success){
 				console.log("**Error retrieving user info**"+response.error_message);
 			}else{
 				console.log("**Successfully retrieved user info**");
 				//Generate user info page
 				$("#userDetails").html(
-				'Student ID:'+response.user.student_number+'<br>'+
-				'First Name:'+response.user.first_name+'<br>'+
-				'Last Name:'+response.user.last_name+'<br>'+
-				'Year Level:'+response.user.year+'<br>'+
-				'Email:'+response.user.email+'<br>'+
-				'Account Type:'+response.user.account_type+'<br>'+
-				'House Request:'+response.user.request_building+'<br>'
+				'<table style="width:100%">'+
+				'<tr><th class="tableLeft">Student ID:</th><th>'+response.user.student_number+'</th></tr>'+
+				'<tr><th class="tableLeft">First Name:</th><th>'+response.user.first_name+'</th></tr>'+
+				'<tr><th class="tableLeft">Last Name:</th><th>'+response.user.last_name+'</th></tr>'+
+				'<tr><th class="tableLeft">Year Level:</th><th>'+response.user.year+'</th></tr>'+
+				'<tr><th class="tableLeft">Email:</th><th>'+response.user.email+'</th></tr>'+
+				'<tr><th class="tableLeft">Account Type:</th><th>'+response.user.account_type+'</th></tr>'+
+				'<tr><th class="tableLeft">House Request:</th><th>'+response.user.request_building+'</th></tr>'+
+				'</table>'
 			);
 			}
 			
@@ -61,9 +71,9 @@
 	//Dialog to manually create user (e.g. manager)
 	$("#dialog-createuser" ).dialog({
 		autoOpen: false,
-		resizable: true,
+		resizable: false,
 		height: "auto",
-		width: 600,
+		width: 455,
 		modal: true,
 		buttons: {
 			"OK": function() {
@@ -118,6 +128,7 @@
 					}else{
 						console.log("**Removed user!**");
 						updateUsers();
+						clearDetails();
 					}
 				});
 				$( this ).dialog( "close" );
@@ -133,12 +144,11 @@
 	//view resident request
 	$("#newUser").click(function(event){
 		$("#dialog-createuser").dialog("open");
-		
-		//balh?
+		$(".newUserForm").val("");
 	});
 	
 	
-	//edit selected user details
+	//grand manager privilages
 	$("#mmBtn").click(function(event){
 		promoteUserToManager($('#userlist .ui-selected').attr('id'),function(response){
 			if(!response.success){
@@ -154,12 +164,24 @@
 	//remove selected user
 	$("#remUser").click(function(event){
 		$("#dialog-remuser").dialog("open");
-		$("#remUserText").html('Removing: ' + uSelected + '<br>Are you sure?');
+		$("#remUserText").html('Removing: ' + users[uIndex].email + '<br>Are you sure?');
 	});
-	
+
+	//search for a user by stringing together student id, first name, and last name....
 	$("#userSearch").keypress(function(e) {
-    if(e.which == 13) {
-        alert('Search using: ' + $(this).val());
-		$(this).val('');
-    }
+		if(e.which == 13) {
+			if($(this).val()==""){
+				//if blank just get all the users
+				updateUsers();
+			}else{
+				//don't bother updating the users for searching
+				$("#userlist").empty();
+				users.forEach(function(entry){
+					if((entry.student_number+entry.first_name+entry.last_name).indexOf($("#userSearch").val())>=0){
+						$("#userlist").append('<li class="style=ui-widget-content" id="'+entry.user_id+'">ID: '+entry.student_number+': '+entry.last_name+'</li>');
+					}
+				});
+			}
+			clearDetails();
+		}
 	});
