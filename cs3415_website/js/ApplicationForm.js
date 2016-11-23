@@ -9,10 +9,10 @@ $(document).ready(function(){
 			console.log("**Sucessfully fetched buildings!**");
 			}	
         });
-	}
+	});
 	
-	$("#main_list li").click(function(){
-		$("#main_list li").removeClass("selected");
+	$(".page_section li").click(function(){
+		$(".page_section li").removeClass("selected");
 		$(this).addClass("selected").siblings();
 	});
 	

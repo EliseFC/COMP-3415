@@ -10,27 +10,24 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="./api.js"></script>
 <script src="./js/ApplicationForm.js"></script> 
-
-
-</head> 
-
-<body> <div id='nav_bar'> <ul> <li><a href="shome.html">Back</a></li>
-<li><a href="slogin.html">Log Out</a></li>
-</ul> </div> <img id ='logo' src="./img/lulogo.png">
-
-<hr>
-<!--Form Start-->
-<form method="post" enctype="multipart/form-data">
+</head>
+ 
+<body>
+	 <div id='nav_bar'>
+		  <ul> 
+			  <li><a href="shome.html">Back</a></li>
+			  <li><a href="slogin.html">Log Out</a></li>
+		  </ul> 
+	  </div> <img id ='logo' src="./img/lulogo.png">
+	  <hr>
+	  <!--Form Start-->
+	  <form method="post" enctype="multipart/form-data">
 	      <input type="hidden" name="CS3415-Project" >
 	      <div class="page_section">
-        
-<h3>Please select what you perfer:</h3>
-	<table class="dicttable">
-	  <tbody>
-	     
- 		<!--Start House section-->
- 		<div id="main_list" data-role="content">
- 			<h3 class="title" id="one">First Year level House</h3>
+			<h3>Please select what you perfer:</h3>
+ 			<h4 class="title" id="one">
+				<span>First Year level House</span>
+			</h4>
  			<ul id="da-thumbs" class="cof-content clearfix">
  				<li id="house1" class="selectable">
  					<img src="img/Bartlay_Single.jpg" />
@@ -39,37 +36,27 @@
  					<img src="img/HallidayHall_Single.jpg" />
  				</li>
  			</ul>
- 			<h3 class="title" id="two">Appartment</h3>
+ 			<h4 class="title" id="two"><span>Appartment</span></h4>
  			<ul id="da-thumbs" class="cof-content clearfix">
  				<li id="house3" class="selectable">
 					<img src="img/Apartment_1.jpg" />
  				</li>
  			</ul>
- 			<h3 class="title" id="three">Town House</h3>
+ 			<h3 class="title" id="three"><span>Town House</span></h3>
  			<ul id="da-thumbs" class="cof-content clearfix">
  				<li id="house4" class="selectable">
  					<img src="img/Townhouse_livingRoom.jpg" />
- 				</li>
- 				<li id="house5" class="selectable">
- 					<img src="img/Townhouse_room.jpg" />
+					<img src="img/Townhouse_room.jpg" />
  				</li>
  			</ul>
-			
 		
+      <div class="specialReqs">
+		  <label for="id_specialReqs">Do you have any special request</label>
+        <input id="id_specialReqs" name="specialReqs" type="text" size="100" value="">
 		</div>
- 
-      <tr>
-        <th><label for="id_specialReqs">Do you have any special request</label></th>
-        <td><input id="id_specialReqs" name="specialReqs" type="text" size="100" value=""></td>
-      </tr>
-		
-	  </tbody>
-	</table>
-
-	      </div>
-	      <fieldset class="button_bar">
-	        <input type="submit" id="saveApplication" value="save and countinuous">
-	      </fieldset>
-	    </form>
+		<input type="submit" id="saveApplication" value="Submit">
+	</div>
+	             
+  </form>
 </body>
 </html>
