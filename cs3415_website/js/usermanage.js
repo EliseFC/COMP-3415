@@ -20,7 +20,7 @@
 			//activate inactive buttons
 			$("#editDetails").button({disabled: false});
 			$("#remUser").button({disabled: false});
-			$("#mmBtn").button({disabled: true});
+			$("#mmBtn").button({disabled: false});
 			//update user details form
 			updateUserDetails();
 		}                   
@@ -57,8 +57,9 @@
 				'<tr><th class="tableLeft">Email:</th><th>'+response.user.email+'</th></tr>'+
 				'<tr><th class="tableLeft">Account Type:</th><th>'+response.user.account_type+'</th></tr>'+
 				'<tr><th class="tableLeft">House Request:</th><th>'+response.user.request_building+'</th></tr>'+
+				'<tr><th class="tableLeft">User ID:</th><th>'+response.user.user_id+'</th></tr>'+
 				'</table>'
-			);
+				);
 			}
 			
 		});
@@ -155,8 +156,8 @@
 					console.log("**Error promoting user!**"+response.error_message);
 				}else{
 					console.log("**Promoted user!**");
-					updateUsers();
 					updateUserDetails();
+					updateUsers();
 				}
 		});
 	});

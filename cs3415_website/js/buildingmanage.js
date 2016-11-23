@@ -118,6 +118,13 @@ $("#statementlist").selectable({
 	}
 });
 
+$("#oList").selectable({
+	selected: function(event, ui) {
+		$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+	}
+});
+
+
 //Add building button
 $("#newBldg").click(function(event){
 	$("#dialog-addBldg").dialog("open");
@@ -212,9 +219,9 @@ $("#switchRoom").click(function(event){
 //dialog view room
 $("#dialog-viewRoom" ).dialog({
 	autoOpen: false,
-	resizable: false,
-	height: "auto",
-	width: 650,
+	resizable: true,
+	height: 760,
+	width: 600,
 	modal: true,
 	buttons: {
 		"OK": function() {
@@ -284,9 +291,23 @@ $("#viewRoom").click(function(event){
 			'</ul>'+
 			'</div>'
 			);
+
+			
 			if(response.occupants[0]){
 				response.occupants.forEach(function(entry){
-					$("#oList").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.student+'<br>'+entry.start_date+'->'+entry.end_date+'</li>');
+					$("#oList").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.student+'<br>'+entry.start_date+'->'+entry.end_date+
+					'<button id="'+entry.student_id+'" class="remOcBtn ui-button ui-widget ui-corner-all">Remove</button></li>');
+					//remove occupant function for each button
+					$("#"+entry.student_id).click(function(event){
+						removeOccupant(entry.student_id,function(response){
+							if(!response.success){
+								console.log("***error removing occupant**"+response.error_message);
+							}else{
+								console.log("***removed occupant***");
+								$("#viewRoom").trigger("click");
+							}
+						});
+					});
 				});
 			}else{
 				$("#oList").append('<li class="style=ui-widget-content">Unoccupied</li>');
@@ -449,12 +470,16 @@ function clearRooms(){
 }
 
 $("#rmSt").click(function(event){
-	removeNotification(6,function(response){
+	if(!$('#statementlist .ui-selected').attr('id')){
+		alert("Please select a notification");
+	}else{
+		removeNotification($('#statementlist .ui-selected').attr('id'),function(response){
 		if(!response.success){
 				console.log("**ERROR removing notification**" + response.error_message);
 			}else{
 				console.log("**Sucessfully removed notification**!**");
 				updateStatements();
 			}
-	});
+		});
+	}
 });

@@ -2,10 +2,6 @@
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="DetailsText">Details here</div></p>
 </div>
 
-<div id="dialog-housereq" title="Request Details">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><div id="HouseDetailsText">Details here</div></p>
-</div>
-
 <h3>Manager Home</h3>
 <div class = "main panel-left">
 	<h3>Resident Issues</h3>
@@ -17,9 +13,24 @@
 </div>
 <div class = "main panel-right">
 	<h3>New Housing Requests</h3>
-	<div style="height:65%;width:100%;overflow-y:scroll">
+	<div style="height:20%;width:100%;overflow-y:scroll">
 		<ol class="selectlist"  id="housereqs">
 		</ol>
 	</div>
-	<button id="viewHousereq" class="ui-button ui-widget ui-corner-all">View Request</button>
-</div>
+	<h3>Request Details</h3>
+	<div id="reqDetails"><!--All those juicy details here--></div>
+	<button id="approve" class="ui-button ui-widget ui-corner-all">Approve/Assign</button>
+	<button id="deny" class="ui-button ui-widget ui-corner-all">Deny</button>
+	<button id="testReq" class="ui-button ui-widget ui-corner-all">Test Request</button>
+	
+	<div id = "roomPanel">
+	<h2><div id = "facDisplay"></div></h2>
+	<h3><div id="roomTitle">Available Rooms</div></h3>
+	<div style="height:28%;width:100%;overflow-y:scroll">
+	<ol class="selectlist"  id="rooms">
+	<!--Starts empty, generated later-->
+	</ol>
+	</div>
+	<button id="confirmRoom" class="ui-button ui-widget ui-corner-all">Confirm</button>
+	<button id="cancelRoom" class="ui-button ui-widget ui-corner-all">Cancel</button>
+	</div>
