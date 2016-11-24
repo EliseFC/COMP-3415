@@ -20,12 +20,14 @@ $(document).ready(function(){
 				console.log("**Error retrieving user info**"+response.error_message);
 			}else{
 				console.log("**Successfully retrieved user info**");
-				document.getElementById("Firstname").value=response.user.first_name;
-				document.getElementById("Lastname").value=response.user.last_name;
-				document.getElementById("Email").value=response.user.email;
-				document.getElementById("year").value=response.user.year;
-				document.getElementById("ID").value=response.user.student_number;
-				document.getElementById("building").value=response.user.request_building;
+				$("#Firstname").val(response.user.first_name);
+				$("#Lastname").val(response.user.last_name);
+				
+				$("#Lastname").val(response.user.last_name);
+				$("#Email").val(response.user.email);
+				$("#year").val(response.user.year);
+				$("#ID").val(response.user.student_number);
+				$("#building").val(response.user.request_building);
 				
 			}
 		});
