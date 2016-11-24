@@ -110,6 +110,10 @@ var removeUser = function(user_id, callback) {
 	api("?id=26&userID=" + user_id, callback);
 }
 
+var updateUser = function(email, lName, fName, year, student_number, callback) {
+	api("?id=27&email=" + email + "&lName=" + lName + "&fName=" + fName + "&year=" + year + "&sNo=" + student_number, callback);
+}
+
 var api = function(params, callback) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {

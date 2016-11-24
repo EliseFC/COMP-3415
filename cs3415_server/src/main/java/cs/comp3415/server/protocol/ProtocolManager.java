@@ -36,6 +36,7 @@ public class ProtocolManager {
 		packets.put(24, GetUsers::new);
 		packets.put(25, PromoteUser::new);
 		packets.put(26, RemoveUser::new);
+		packets.put(27, UpdateUser::new);
 	}
 	
 	public Packet getPacketFromID(int id) {

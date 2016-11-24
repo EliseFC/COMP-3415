@@ -20,14 +20,14 @@ public class ApproveRequest extends Packet {
 		
 		SQL.query("SELECT * FROM users WHERE id = ?", conn).closeConnection(false).setInt(1, studentID).executeQuery().checkForNone("That student doesn't exist!");
 		
-		String studentName = SQL.query("SELECT name FROM users WHERE id = ?", conn).closeConnection(false).setInt(1, studentID).executeQuery().fillOne(String.class, rs -> rs.getString(1), "Student doesn't exist!");
+		String studentName = SQL.query("SELECT email FROM users WHERE id = ?", conn).closeConnection(false).setInt(1, studentID).executeQuery().fillOne(String.class, rs -> rs.getString(1), "Student doesn't exist!");
 		SQL.query("UPDATE users SET request = NULL, request_building = 0 WHERE id = ?", conn).closeConnection(false).setInt(1, studentID).execute();
 		SQL.query("INSERT INTO occupants (studentID, room_id, student, start_date, end_date) VALUES (?, ?, ?, ?, ?)", conn)
 			.setInt(1, studentID)
 			.setInt(2, roomID)
 			.setString(3, studentName)
 			.setString(4, new Date(System.currentTimeMillis()).toString())
-			.setString(5, new Date(2017, 5, 1).toString())
+			.setString(5, new Date(1493596800l).toString())
 			.execute();
 	}
 }
