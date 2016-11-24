@@ -26,7 +26,21 @@ $(document).ready(function(){
 				$("#Email").val(response.user.email);
 				$("#year").val(response.user.year);
 				$("#ID").val(response.user.student_number);
-				$("#building").val(response.user.request_building);	
+				
+				getBuildings(function(res) {
+					if(!res.success) {
+						
+					} else {
+						var type = "Residence Hall";
+						res.buildings.forEach(function(blndg) {
+							console.log({ id: blndg.id.toString(), req_bid: response.user.request_building, bool: blndg.id === response.user.request_building})
+							if (blndg.id.toString() === response.user.request_building) {
+								type = blndg.type;
+							}
+						})
+						$("#building").val(type);
+					}
+				});
 			}
 		});
 		

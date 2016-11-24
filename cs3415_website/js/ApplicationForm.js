@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	var buildings;	
+	var type = "Residence Hall";
+	var buildings =[];
 	var user;
 	var student=JSON.parse(sessionStorage.getItem("studentSession"));
 	
@@ -17,34 +18,35 @@ $(document).ready(function(){
 	        }
 		
 		});
-	
-	//get the building type 
-	getBuildings(function(response){
-		if(!response.success){
-			console.log("error getting buildings"+response.error_message);
-		}else{
-			buildings = response.buildings;
-			console.log("**Sucessfully fetched buildings!**");
-		}
-	});
 
 	//add new request
 	$("#saveApplication").click(function(){
-		addHousingRequest(user.user_id,$("#id_specialReqs").val(),buildings[0].id, function(response) {
-					if(!response.success){
-					console.log("error getting buildings"+response.error_message);
-					}else{
-					buildings = response.buildings;
-					console.log("**Sucessfully fetched buildings!**");
-					alert("Thanks for your application!");
-					window.location.href = 'shome.html';
-					}	
-		        });
+		getBuildings(function(response){
+			if(!response.success){
+				console.log("error getting buildings"+response.error_message);
+			}else{
+				response.buildings.forEach(function(bldg) {
+					if (bldg.type === type) {
+						buildings.push(bldg);
+					}
+				});
+				
+				addHousingRequest(user.user_id,$("#id_specialReqs").val(),buildings[0].id, function(response) {
+							if(!response.success){
+							console.log("error getting buildings"+response.error_message);
+							}else{
+							alert("Thanks for your application!");
+							window.location.href = 'shome.html';
+							}	
+				        });
+			}
+		});
 	});
 	
 	$(".page_section li").click(function(){
 		$(".page_section li").removeClass("selected");
 		$(this).addClass("selected").siblings();
+		type = $(this).attr("id");
 	});
 	
 	
