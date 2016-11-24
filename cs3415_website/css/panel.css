@@ -71,3 +71,8 @@ tr, th {
 #userDetails{
 	padding:15px;
 }
+#facDisplay{
+	font-size:15px;
+	padding-left:15px;
+	border:1px dashed black;
+}

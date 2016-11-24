@@ -15,7 +15,12 @@ $(document).ready(function(){
 				if(response.user.password!=$("#password").val()||response.user.email!=$("#username").val()){
 					alert("Invalid username or password!");
 				}else{
-					window.location.href = 'mhome.html';
+					if(response.user.account_type!="manager"){
+						alert("You do not have manager privileges.");
+					}else{
+						window.location.href = 'mhome.html';
+					}
+					
 				}
 			}
 		});

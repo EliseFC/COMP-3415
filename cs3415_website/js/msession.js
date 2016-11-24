@@ -12,6 +12,9 @@ $( document ).ready(function(){
 			}else{
 				if(response.user.password!=creds.password){
 					bootMe();
+				}else if(response.user.account_type!="manager"){
+					alert("You do not have manager privileges.");
+					bootMe();
 				}
 			}
 		});

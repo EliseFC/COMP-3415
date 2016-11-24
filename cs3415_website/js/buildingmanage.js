@@ -99,7 +99,7 @@ $("#buildings").selectable({
 			$("#rooms").slideDown('fast');
 		});
 		//generate facilities string
-		$("#facDisplay").html(bSelected+" facilities: "+facilities[bIndex]);
+		$("#facDisplay").html("Facilities: "+facilities[bIndex]);
 		
 		updateStatements();
 	}
@@ -251,6 +251,7 @@ $("#dialog-editEquip" ).dialog({
 				}else{
 					$("#vDev").html($("#inputEquip").val());
 					console.log("**Sucessfully updated devices**");
+					updateRooms();
 				}
 				
 			});
@@ -410,6 +411,9 @@ $("#dialog-editFac" ).dialog({
 					console.log("**Sucessfully updated facilites!**");
 				}
 			});
+			$("#facDisplay").html('Select a building');
+			$("#rooms").empty();
+			$("#statementlist").empty();
 			updateBuildings();
 			$( this ).dialog( "close" );
 		},
