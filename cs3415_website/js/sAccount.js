@@ -1,11 +1,8 @@
-/*Account inform */
-
-//function to update the user aplication
+/* User Account inform */
 $(document).ready(function(){
 	var buildings;	
 	var user;
 	var student=JSON.parse(sessionStorage.getItem("studentSession"));
-
 
 	//get the building type 
 	getBuildings(function(response){
@@ -16,26 +13,22 @@ $(document).ready(function(){
 			console.log("**Sucessfully fetched buildings!**");
 		}
 	});
-	//function applicationFrom(){
+	
+		//display user profile
 		getUserByEmail(student.username,function(response){
 			if(!response.success){
 				console.log("**Error retrieving user info**"+response.error_message);
 			}else{
 				console.log("**Successfully retrieved user info**");
-			//Generate user info page
-				$("#userDetails").html(
-					'<table style="width:100%">'+
-					'<tr><th class="dicttable">Student ID:</th><th>'+response.user.student_number+'</th></tr>'+
-					'<tr><th class="dicttable">First Name:</th><th>'+response.user.first_name+'</th></tr>'+
-					'<tr><th class="dicttable">Last Name:</th><th>'+response.user.last_name+'</th></tr>'+
-					'<tr><th class="dicttable">Year Level:</th><th>'+response.user.year+'</th></tr>'+
-					'<tr><th class="dicttable">Email:</th><th>'+response.user.email+'</th></tr>'+
-					'<tr><th class="dicttable">House Request:</th><th>'+response.user.request_building+'</th></tr>'+
-					'</table>'
-				);
+				document.getElementById("Firstname").value=response.user.first_name;
+				document.getElementById("Lastname").value=response.user.last_name;
+				document.getElementById("Email").value=response.user.email;
+				document.getElementById("year").value=response.user.year;
+				document.getElementById("ID").value=response.user.student_number;
+				document.getElementById("building").value=response.user.request_building;
+				
 			}
 		});
-		//}
+		
 	
 });
-
