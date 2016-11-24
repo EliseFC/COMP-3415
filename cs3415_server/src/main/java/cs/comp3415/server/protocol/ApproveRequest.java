@@ -27,7 +27,6 @@ public class ApproveRequest extends Packet {
 			.setInt(2, roomID)
 			.setString(3, studentName)
 			.setString(4, new Date(System.currentTimeMillis()).toString())
-			.setString(5, new Date(1493596800l).toString())
 			.execute();
 	}
 }
