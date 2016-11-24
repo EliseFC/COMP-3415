@@ -44,5 +44,19 @@ $(document).ready(function(){
 			}
 		});
 		
+		$("#saveUpdate").click(function(){
+			updateUser($("#Email").val(),$("#Firstname").val(),$("#Lastname").val(),$("#year").val(),$("#ID").val(),function(response){
+				if(!response.success){
+					console.log("**Error update Information**"+response.error_message);
+				}else{
+					console.log("**Successfully update Information**"+response.error_message);
+					alert("Your information have saved!");
+					window.location.href = 'shome.html';
+				}
+			});
+			
+			
+		});
+		
 	
 });
