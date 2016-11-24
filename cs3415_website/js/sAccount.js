@@ -20,15 +20,13 @@ $(document).ready(function(){
 				console.log("**Error retrieving user info**"+response.error_message);
 			}else{
 				console.log("**Successfully retrieved user info**");
+				console.log(student);
 				$("#Firstname").val(response.user.first_name);
-				$("#Lastname").val(response.user.last_name);
-				
 				$("#Lastname").val(response.user.last_name);
 				$("#Email").val(response.user.email);
 				$("#year").val(response.user.year);
 				$("#ID").val(response.user.student_number);
-				$("#building").val(response.user.request_building);
-				
+				$("#building").val(response.user.request_building);	
 			}
 		});
 		
