@@ -14,7 +14,7 @@ $(document).ready(function(){
 						}else{
 							console.log("**Sucessfully Create an new account!**");
 							alert("You have create an account!");
-							window.location.href = 'shome.html';
+							window.location.href = 'slogin.html';
 						}
 					});
 		}else{

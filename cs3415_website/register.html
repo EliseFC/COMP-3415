@@ -13,62 +13,67 @@
 
 </head> 
 
-<body> <div id='nav_bar'> <ul> <li><a href="shome.html">Back</a></li>
-<li><a href="slogin.html">Log Out</a></li>
-</ul> </div>  <img id ='logo'
-src="./img/lulogo.png">
+<body> 
+	<div id='nav_bar'> 
+		<ul> 
+			<li><a href="index.html">Back</a></li>
+		</ul> 
+	</div>  <img id ='logo' src="./img/lulogo.png">
 
 <hr>
-	      <input type="hidden" name="CS3415-Project" >
-	      <div class="page_section">
-<h3>To create an account</h3>      
-<h3>Please fill out your personal information</h3>
-	<table class="elegant-aero">
-	  <tbody>
-	      <tr>
-	        <th><label for="id_First_name" class="elegant-aero">First Name <span class="required-star" title="required">*</span></label></th>
-	        <td><input id="id_First_name" name="First_name" type="text" ></td>
-	      </tr>
-	
-	    
-  
-	      <tr>
-	        <th><label for="id_Last_name" class="elegant-aero">Last Name<span class="required-star" title="required">*</span></label></th>
-	        <td><input id="id_Last_name" name="Last_name" type="text" ></td>
-	      </tr> 
-		  <tr>
-			  <th><label class="elegant-aero">Password<span class="required-star" title="required">*</span></label></th>
-			  <td><input type="password" name="pwd" id="pwd" ></td>
-		  </tr>
-		  <tr>
-			  <th><label class="elegant-aero">Confirm Password<span class="required-star" title="required">*</span></label></th>
-			  <td><input type="password" name="pwd2" id="pwd2" ></td>
-		  </tr>
-	      <tr>
-	        <th><label for="id_Email" class="elegant-aero">Email <span class="required-star" title="required">*</span></label></th>
-	        <td><input id="id_Email" name="Email" type="text" required=""></td>
-	      </tr>
-		  
-	  	  <tr>
-	  	  	  	<th><label for="id_year" class="elegant-aero">Year levle</label></th>
-	  	  	    <td><select id="id_year" name="campus">
-	  	 <option selected="selected">First Year</option>
-	  	 <option >Second year</option>
-	  	 <option >Third Year</option>
-	  	 <option >Forth year</option>
-	  	 <option >Other</option>
-	  	  	</select></td>
-	  	  	    </tr>
-	  	  <tr>
-	  	     <th><label for="id_ID" class="elegant-aero">Student ID <span class="required-star" title="required">*</span></label></th>
-	  	    	<td><input id="id_ID" name="ID" type="text" ></td>
-	  	      </tr>
-	  	
-	  	  </tbody>
-	  	</table>
-	      </div>
-	      <fieldset class="elegant-aero">
-	        <input type="submit" id="saveRegister" value="save and countinuous">
-	      </fieldset>
+	 <input type="hidden" name="CS3415-Project" >
+	 <div class="page_section">
+		 <h3>To create an account</h3>      
+		<h3>Please fill out your personal information</h3>
+		<div class="txt">
+			<label for="id_First_name">
+				<span class="required">*</span>First Name
+			</label>
+			<input id="id_First_name" name="First_name" type="text" >
+		</div>
+		<div class="txt">
+			<label for="id_Last_name">
+				<span class="required">*</span>Last Name
+			</label>
+			<input id="id_Last_name" name="Last_name" type="text" >
+		</div>
+		<div class="txt">
+			<label for="pwd">
+				<span class="required">*</span>Password
+			</label>
+			<input type="password" name="pwd" id="pwd" >
+		</div>
+		<div class="txt">
+			<label for="pwd2">
+				<span class="required">*</span>Confirm Password
+			</label>
+			<input type="password" name="pwd2" id="pwd2" >
+		</div>
+		<div class="txt">
+			<label for="id_Email">
+				<span class="required">*</span>Email
+			</label>
+			<input id="id_Email" name="Email" type="text" required="">
+		</div>
+		<div class="txt">
+			<label for="id_year">
+				<span class="required">*</span>Year levle
+			</label>
+			<select id="id_year" name="campus">
+				<option selected="selected">First Year</option>
+				<option >Second year</option>
+				<option >Third Year</option>
+				<option >Forth year</option>
+				<option >Other</option>
+			</select>
+		</div>
+		<div class="txt">
+			<label for="id_ID">
+				<span class="required">*</span>Student ID
+			</label>
+			<input id="id_ID" name="ID" type="text" >
+		</div>
+		<input type="submit" id="saveRegister" value="save and countinuous">
+	</div>
 </body>
 </html>
