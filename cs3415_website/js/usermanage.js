@@ -36,7 +36,7 @@
 				console.log("**Successfully retrieved users**");
 				users = response.users;
 				users.forEach(function(entry){
-				$("#userlist").append('<li class="style=ui-widget-content" id="'+entry.user_id+'">ID: '+entry.student_number+': '+entry.last_name+'</li>');
+				$("#userlist").append('<li class="style=ui-widget-content" id="'+entry.user_id+'">ID: '+entry.student_number+': '+entry.last_name+', '+entry.first_name+'</li>');
 			});
 			}
 		});
