@@ -299,7 +299,8 @@ $("#viewRoom").click(function(event){
 					$("#oList").append('<li class="style=ui-widget-content" id="'+entry.id+'">'+entry.student+'<br>'+entry.start_date+'->'+entry.end_date+
 					'<button id="'+entry.student_id+'" class="remOcBtn ui-button ui-widget ui-corner-all">Remove</button></li>');
 					//remove occupant function for each button
-					$("#"+entry.student_id).click(function(event){
+					$("#"+entry.student_id+".remOcBtn").click(function(event){
+						console.log("am i working????");
 						removeOccupant(entry.student_id,function(response){
 							if(!response.success){
 								console.log("***error removing occupant**"+response.error_message);

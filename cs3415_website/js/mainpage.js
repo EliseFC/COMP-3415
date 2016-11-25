@@ -155,6 +155,7 @@
 		$("#DetailsText").html(
 			"Student ID: " + issues[$('#resreqs .ui-selected').index()].student_id + '<br>'+
 			"Name: " + issues[$('#resreqs .ui-selected').index()].fname + " " + issues[$('#resreqs .ui-selected').index()].lname +"<br>"+
+			"Email: " + issues[$('#resreqs .ui-selected').index()].email+"<br>"+
 			"Building: " + issues[$('#resreqs .ui-selected').index()].building + "<br>"+
 			"Issue Details: "+issues[$('#resreqs .ui-selected').index()].text+"<br>"+
 			"Status: "+issues[$('#resreqs .ui-selected').index()].status+"<br>"
@@ -199,6 +200,7 @@
 													building: entry.name,
 													text: entry2.issue,
 													student_id: response.user.student_number,
+													email: response.user.email,
 													fname: response.user.first_name,
 													lname: response.user.last_name,
 													status: entry2.status
@@ -219,20 +221,22 @@
 	}
 	//TEST FUNCTIONS DELETE LATERRRRR
 	$("#testResreq").click(function(event){
-		addIssue(18,buildings[0].id,"I HAVE AN ISSUE PLS HALP",function(response){
+		addIssue(18,buildings[0].id,"The bathroom faucet is dripping, please help.",function(response){
 			if(!response.success){
 				console.log("**Error setting issue!***"+response.error_message);
 			}else{
 				console.log("**set issue***");
+				updateIssues();
 			}
 		});
 	});
 	$("#testReq").click(function(event){
-		addHousingRequest(18,"2 ply extra strong toilet paper",buildings[0].id,function(response){
+		addHousingRequest(18,"Extra firm mattress",buildings[0].id,function(response){
 			if(!response.success){
 				console.log("**Error setting requests!***"+response.error_message);
 			}else{
 				console.log("**set requests***");
+				updateHRs();
 			}
 		});
 	});
