@@ -45,7 +45,7 @@ $(document).ready(function(){
 		});
 		
 		$("#saveUpdate").click(function(){
-			updateUser($("#Email").val(),$("#Firstname").val(),$("#Lastname").val(),$("#year").val(),$("#ID").val(),function(response){
+			updateUser($("#Email").val(),$("#Lastname").val(),$("#Firstname").val(),$("#year").val(),$("#ID").val(),function(response){
 				if(!response.success){
 					console.log("**Error update Information**"+response.error_message);
 				}else{

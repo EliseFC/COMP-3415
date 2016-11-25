@@ -1,9 +1,9 @@
-
 <html> 
 <head> 
 	<title>Student Register</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/panel.css" />
+	<link rel="stylesheet" type="text/css" href="css/tableStyle.css">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -15,42 +15,42 @@
 
 <body> <div id='nav_bar'> <ul> <li><a href="shome.html">Back</a></li>
 <li><a href="slogin.html">Log Out</a></li>
-</ul> </div> <h3>To create an account!</h3> <img id ='logo'
+</ul> </div>  <img id ='logo'
 src="./img/lulogo.png">
 
 <hr>
 	      <input type="hidden" name="CS3415-Project" >
 	      <div class="page_section">
-        
+<h3>To create an account</h3>      
 <h3>Please fill out your personal information</h3>
-	<table class="dicttable">
+	<table class="elegant-aero">
 	  <tbody>
 	      <tr>
-	        <th><label for="id_First_name">First Name <span class="required-star" title="required">*</span></label></th>
+	        <th><label for="id_First_name" class="elegant-aero">First Name <span class="required-star" title="required">*</span></label></th>
 	        <td><input id="id_First_name" name="First_name" type="text" ></td>
 	      </tr>
 	
 	    
   
 	      <tr>
-	        <th><label for="id_Last_name">Last Name<span class="required-star" title="required">*</span></label></th>
+	        <th><label for="id_Last_name" class="elegant-aero">Last Name<span class="required-star" title="required">*</span></label></th>
 	        <td><input id="id_Last_name" name="Last_name" type="text" ></td>
 	      </tr> 
 		  <tr>
-			  <th><label>Password<span class="required-star" title="required">*</span></label></th>
+			  <th><label class="elegant-aero">Password<span class="required-star" title="required">*</span></label></th>
 			  <td><input type="password" name="pwd" id="pwd" ></td>
 		  </tr>
 		  <tr>
-			  <th><label>Confirm Password<span class="required-star" title="required">*</span></label></th>
+			  <th><label class="elegant-aero">Confirm Password<span class="required-star" title="required">*</span></label></th>
 			  <td><input type="password" name="pwd2" id="pwd2" ></td>
 		  </tr>
 	      <tr>
-	        <th><label for="id_Email">Email <span class="required-star" title="required">*</span></label></th>
+	        <th><label for="id_Email" class="elegant-aero">Email <span class="required-star" title="required">*</span></label></th>
 	        <td><input id="id_Email" name="Email" type="text" required=""></td>
 	      </tr>
 		  
 	  	  <tr>
-	  	  	  	<th><label for="id_year">Year levle</label></th>
+	  	  	  	<th><label for="id_year" class="elegant-aero">Year levle</label></th>
 	  	  	    <td><select id="id_year" name="campus">
 	  	 <option selected="selected">First Year</option>
 	  	 <option >Second year</option>
@@ -60,14 +60,14 @@ src="./img/lulogo.png">
 	  	  	</select></td>
 	  	  	    </tr>
 	  	  <tr>
-	  	     <th><label for="id_ID">Student ID <span class="required-star" title="required">*</span></label></th>
+	  	     <th><label for="id_ID" class="elegant-aero">Student ID <span class="required-star" title="required">*</span></label></th>
 	  	    	<td><input id="id_ID" name="ID" type="text" ></td>
 	  	      </tr>
 	  	
 	  	  </tbody>
 	  	</table>
 	      </div>
-	      <fieldset class="button_bar">
+	      <fieldset class="elegant-aero">
 	        <input type="submit" id="saveRegister" value="save and countinuous">
 	      </fieldset>
 </body>
