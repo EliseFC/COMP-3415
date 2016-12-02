@@ -1,0 +1,5 @@
+{
+	"dbHost": "jdbc:mysql://host:port/db",
+	"dbUser": "user",
+	"dbPassword": "pass"
+}

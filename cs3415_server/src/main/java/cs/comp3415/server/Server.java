@@ -19,13 +19,13 @@ public class Server extends NanoHTTPD {
 	private static final int PORT = 8887;
 	
 	private DB db;
-	private ProtocolManager pm;
+	private ProtocolManager protocolManager;
 	private Configuration config;
 	
 	public Server(DB db, ProtocolManager pm, Configuration config) {
 		super(PORT);
 		this.db = db;
-		this.pm = pm;
+		this.protocolManager = pm;
 		this.config = config;
 	}
 	
@@ -37,7 +37,7 @@ public class Server extends NanoHTTPD {
 			e.printStackTrace();
 		}
 		
-		Packet packet = pm.getPacketFromID(session.getParameters());
+		Packet packet = protocolManager.getPacketFromID(session.getParameters());
 		
 		if(packet == null)
 			return sendErrorPacket("No packet with id " + session.getParameters().get("id") + " found!");
@@ -79,7 +79,7 @@ public class Server extends NanoHTTPD {
 	}
 	
 	public ProtocolManager getProtocol() {
-		return pm;
+		return protocolManager;
 	}
 	
 	public static void main(String args[]) throws IOException {
